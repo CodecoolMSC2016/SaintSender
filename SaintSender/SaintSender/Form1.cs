@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using SaintSender.Properties;
+using System.Windows.Forms;
 
 namespace SaintSender
 {
@@ -7,6 +8,15 @@ namespace SaintSender
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, System.EventArgs e)
+        {
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
