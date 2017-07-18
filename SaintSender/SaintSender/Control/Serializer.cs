@@ -1,4 +1,5 @@
 ﻿using MimeKit;
+using SaintSender.Model;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -24,20 +25,15 @@ namespace SaintSender.Control
             return null;
         }
 
-        public void Save(MimeMessage[] mails, string folderName)
+        public void Save(MimeMessage[] messages, string folderName)
         {
             BinaryFormatter bf = new BinaryFormatter();
+            Folder folder = new Folder(messages);
 
-            MessageConverter m = new MessageConverter();
-
-            for (int i = 0; i < mails.Length; i++)
-            {
-                // TODO: check whether MessageId is exist or not
-                string fileName = Path.GetDirectoryName(folderName) + @"\" + mails[i].MessageId + ".dat";
-                FileStream stream = new FileStream(fileName, FileMode.Create);
-                bf.Serialize(stream, m.ToMail(mails[i]));
-                stream.Close();
-            }
+            string fileName = Path.GetDirectoryName(folderName) + "mails.dat";
+            FileStream stream = new FileStream(fileName, FileMode.Create);
+            bf.Serialize(stream, folder);
+            stream.Close();
         }
     }
 }
