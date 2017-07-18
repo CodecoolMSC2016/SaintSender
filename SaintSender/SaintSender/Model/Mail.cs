@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SaintSender
+namespace SaintSender.Model
 {
     [Serializable]
     internal class Mail

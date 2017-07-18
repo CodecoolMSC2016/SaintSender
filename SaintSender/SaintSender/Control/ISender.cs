@@ -1,5 +1,4 @@
 ﻿using MimeKit;
-using SaintSender.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +8,11 @@ using System.Threading.Tasks;
 namespace SaintSender.Control
 {
     /// <summary>
-    /// Converts between [Serializable] Mail and MimeMessage
+    /// Sends emails via Smtp connection.
     /// </summary>
-    interface IMessageConverter
+    interface ISender
     {
-        Mail ToMail(MimeMessage message);
-        MimeMessage ToMimeMessage(Mail message);
+        // constructor(SmtpClient senderClient)
+        void SendMail(MimeMessage message);
     }
 }
