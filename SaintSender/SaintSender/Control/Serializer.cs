@@ -7,6 +7,7 @@ namespace SaintSender.Control
     {
         public Mail[] Restore(string folderName)
         {
+            // folderName should be a full path!!!
             string[] filePaths = Directory.GetFiles(folderName);
 
             Mail[] mails = new Mail[filePaths.Length];
