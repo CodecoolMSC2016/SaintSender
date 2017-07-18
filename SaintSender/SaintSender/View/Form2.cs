@@ -33,7 +33,7 @@ namespace SaintSender.View
 
             imageList1.Images.Add(Resources.hamburger);
 
-            webBrowser1.Navigate("https://dcrazed.com/html/kreative-demo/");
+            emailWebBrowser.Navigate("https://dcrazed.com/html/kreative-demo/");
 ;
             var data = new[]
             {
