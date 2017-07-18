@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SaintSender
+namespace SaintSender.Model
 {
     // [Serializable]
     internal class Mail : ISerializable
