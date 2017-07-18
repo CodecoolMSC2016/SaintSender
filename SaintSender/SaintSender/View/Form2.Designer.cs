@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("salalalal");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("rtrturturtu");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("salalalal");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("rtrturturtu");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
             this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
@@ -85,10 +85,10 @@
             this.materialListView1.FullRowSelect = true;
             this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.materialListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4});
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8});
             this.materialListView1.Location = new System.Drawing.Point(279, 190);
             this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
@@ -104,12 +104,12 @@
             this.tabSelector.BaseTabControl = this.emailWriteTab;
             this.tabSelector.Depth = 0;
             this.tabSelector.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabSelector.Location = new System.Drawing.Point(199, 63);
+            this.tabSelector.Location = new System.Drawing.Point(0, 63);
             this.tabSelector.Margin = new System.Windows.Forms.Padding(3, 300, 3, 0);
             this.tabSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.tabSelector.Name = "tabSelector";
             this.tabSelector.Padding = new System.Windows.Forms.Padding(0, 300, 0, 0);
-            this.tabSelector.Size = new System.Drawing.Size(1081, 23);
+            this.tabSelector.Size = new System.Drawing.Size(1280, 23);
             this.tabSelector.TabIndex = 1;
             this.tabSelector.Text = "materialTabSelector1";
             this.tabSelector.Click += new System.EventHandler(this.materialTabSelector1_Click);
@@ -215,9 +215,9 @@
             this.panel1.Controls.Add(this.btnDrafts);
             this.panel1.Controls.Add(this.btnInbox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 63);
+            this.panel1.Location = new System.Drawing.Point(0, 86);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(199, 657);
+            this.panel1.Size = new System.Drawing.Size(199, 634);
             this.panel1.TabIndex = 3;
             // 
             // btnSpam
@@ -373,7 +373,7 @@
             this.btnLogOut.Depth = 0;
             this.btnLogOut.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnLogOut.Icon = null;
-            this.btnLogOut.Location = new System.Drawing.Point(0, 621);
+            this.btnLogOut.Location = new System.Drawing.Point(0, 598);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnLogOut.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogOut.Name = "btnLogOut";
@@ -392,7 +392,7 @@
             this.btnSettings.Depth = 0;
             this.btnSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnSettings.Icon = null;
-            this.btnSettings.Location = new System.Drawing.Point(0, 585);
+            this.btnSettings.Location = new System.Drawing.Point(0, 562);
             this.btnSettings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnSettings.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSettings.Name = "btnSettings";
@@ -576,8 +576,8 @@
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.emailWriteTab);
             this.Controls.Add(this.materialListView1);
-            this.Controls.Add(this.tabSelector);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.tabSelector);
             this.Name = "Form2";
             this.Padding = new System.Windows.Forms.Padding(0, 63, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
