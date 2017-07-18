@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SaintSender.Control
@@ -8,21 +7,33 @@ namespace SaintSender.Control
     {
         public Mail[] Restore(string folderName)
         {
-            throw new NotImplementedException();
-        }
+            string[] filePaths = Directory.GetFiles(folderName);
 
-        public void Save(Mail[] mails, string folderName)
-        {
-            string fileName = folderName + @"\mails.dat";
-            FileStream stream = new FileStream(fileName, FileMode.Create);
-
+            Mail[] mails = new Mail[filePaths.Length];
             BinaryFormatter bf = new BinaryFormatter();
 
             for (int i = 0; i < mails.Length; i++)
             {
-                bf.Serialize(stream, mails[i]);
+                string fileName = filePaths[i];
+                FileStream stream = new FileStream(fileName, FileMode.Open);
+                mails[i] = (Mail)bf.Deserialize(stream);
+                stream.Close();
             }
-            stream.Close();
+            return mails;
+        }
+
+        public void Save(Mail[] mails, string folderName)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+
+            for (int i = 0; i < mails.Length; i++)
+            {
+                // TODO: name of the file to serialize
+                string fileName = folderName + "BLABLA.dat";
+                FileStream stream = new FileStream(fileName, FileMode.Create);
+                bf.Serialize(stream, mails[i]);
+                stream.Close();
+            }
         }
     }
 }
