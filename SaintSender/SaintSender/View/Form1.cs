@@ -10,8 +10,8 @@ namespace SaintSender
 {
     public partial class formMain : MaterialForm
     {
-        public formMain()
         IClient client;
+        public formMain()
         {
             InitializeComponent();
 
