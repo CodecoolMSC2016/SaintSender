@@ -7,8 +7,8 @@ namespace SaintSender.Control
     {
         public Mail[] Restore(string folderName)
         {
-            // folderName should be a full path!!!
-            string[] filePaths = Directory.GetFiles(folderName);
+            // folderName should be a full path
+            string[] filePaths = Directory.GetFiles(Path.GetDirectoryName(folderName));
 
             Mail[] mails = new Mail[filePaths.Length];
             BinaryFormatter bf = new BinaryFormatter();
@@ -29,7 +29,7 @@ namespace SaintSender.Control
 
             for (int i = 0; i < mails.Length; i++)
             {
-                // TODO: name of the file to serialize
+                // TODO: name of the file to serialize - email ID ??
                 string fileName = folderName + "BLABLA.dat";
                 FileStream stream = new FileStream(fileName, FileMode.Create);
                 bf.Serialize(stream, mails[i]);
