@@ -31,8 +31,7 @@ namespace SaintSender.View
         private void Form2_Load(object sender, EventArgs e)
         {
 
-            imageList1.Images.Add(Resources.hamburger);
-
+            //TODO: Remove...
             emailWebBrowser.Navigate("https://dcrazed.com/html/kreative-demo/");
 ;
             var data = new[]
@@ -43,24 +42,14 @@ namespace SaintSender.View
                 new []{"Óriási akciók", "noreply@edigital.hu", "2017.02.01 12:23"}
             };
 
-            //Add
             foreach (string[] version in data)
             {
                 var item = new ListViewItem(version);
                 emailListView.Items.Add(item);
             }
 
-            //panel1.BackColor = materialTabSelector1.BackColor;
+            
         }
 
-        private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialTabSelector1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
