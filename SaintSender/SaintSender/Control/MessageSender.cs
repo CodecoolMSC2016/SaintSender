@@ -20,11 +20,6 @@ namespace SaintSender.Control
 
         public void SendMail(MimeMessage message)
         {
-            if (!client.IsConnected)
-                throw new ServiceNotConnectedException("Not connected to SMTP server.");
-            if (!client.IsAuthenticated)
-                throw new ServiceNotAuthenticatedException("Client not authorized.");
-
             client.Send(message);
         }       
     }
