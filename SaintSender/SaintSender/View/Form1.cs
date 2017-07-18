@@ -1,6 +1,8 @@
 ﻿using MailKit.Net.Imap;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using MimeKit;
+using SaintSender.Control;
 using SaintSender.Properties;
 using System.Windows.Forms;
 
@@ -9,6 +11,7 @@ namespace SaintSender
     public partial class formMain : MaterialForm
     {
         public formMain()
+        IClient client;
         {
             InitializeComponent();
 
@@ -22,7 +25,8 @@ namespace SaintSender
                 Settings.Default.BackupFolder = @"%appdata%\NoneMail";
                 Settings.Default.Save();
             }
-            
+            // TODO: get singleton client
+            //client.Connect();
         }
 
         private void Form1_Load(object sender, System.EventArgs e)
@@ -36,8 +40,24 @@ namespace SaintSender
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
+        { }
 
+        /// <summary>
+        /// Load messages from client and calls display method.
+        /// </summary>
+        private void LoadMails()
+        {
+            MimeMessage[] messages = client.DownloadMails();
+            ShowMails(messages);
+        }
+
+        /// <summary>
+        /// Displays messages on form.
+        /// </summary>
+        /// <param name="messages">Messages to display</param>
+        private void ShowMails(MimeMessage[] messages)
+        {
+            // TODO: show mails on form
         }
     }
 }

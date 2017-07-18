@@ -64,8 +64,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\IClient.cs" />
-    <Compile Include="Control\IMessageConverter.cs" />
+    <Compile Include="Control\IConnection.cs" />
+    <Compile Include="Control\MessageConnection.cs" />
+    <Compile Include="Control\MessageConverter.cs" />
+    <Compile Include="Control\IReceiver.cs" />
+    <Compile Include="Control\ISender.cs" />
     <Compile Include="Control\ISerializer.cs" />
+    <Compile Include="Control\MessageSender.cs" />
+    <Compile Include="Control\MessageReceiver.cs" />
+    <Compile Include="Model\ConnectionInfo.cs" />
+    <Compile Include="Model\Folder.cs" />
+    <Compile Include="Control\Serializer.cs" />
     <Compile Include="Model\Mail.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
