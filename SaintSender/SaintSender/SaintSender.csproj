@@ -67,6 +67,7 @@
     <Compile Include="Control\ISerializer.cs" />
     <Compile Include="Model\ConnectionInfo.cs" />
     <Compile Include="Model\Folder.cs" />
+    <Compile Include="Control\Serializer.cs" />
     <Compile Include="Model\Mail.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
