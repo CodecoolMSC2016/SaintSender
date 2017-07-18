@@ -30,7 +30,7 @@ namespace SaintSender.Control
             for (int i = 0; i < mails.Length; i++)
             {
                 // TODO: name of the file to serialize - email ID ??
-                string fileName = folderName + "BLABLA.dat";
+                string fileName = Path.GetDirectoryName(folderName) + "BLABLA.dat";
                 FileStream stream = new FileStream(fileName, FileMode.Create);
                 bf.Serialize(stream, mails[i]);
                 stream.Close();
