@@ -62,6 +62,7 @@
     <Compile Include="Control\IClient.cs" />
     <Compile Include="Control\IMessageConverter.cs" />
     <Compile Include="Control\ISerializer.cs" />
+    <Compile Include="Control\Searcher.cs" />
     <Compile Include="Control\Serializer.cs" />
     <Compile Include="Model\Mail.cs" />
     <Compile Include="View\Form1.cs">
