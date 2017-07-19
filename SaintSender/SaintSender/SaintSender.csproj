@@ -70,6 +70,7 @@
     <Compile Include="Control\IReceiver.cs" />
     <Compile Include="Control\ISender.cs" />
     <Compile Include="Control\ISerializer.cs" />
+    <Compile Include="Control\SaintClient.cs" />
     <Compile Include="Control\MessageSender.cs" />
     <Compile Include="Control\MessageReceiver.cs" />
     <Compile Include="Model\ConnectionInfo.cs" />
