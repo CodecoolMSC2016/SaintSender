@@ -7,6 +7,7 @@ namespace SaintSender.Control
     internal class MessageReceiver : IReceiver
     {
         private ImapClient client;
+        public MimeMessage[] Mails { get; private set; }
 
         public MessageReceiver(ImapClient client)
         {
@@ -17,14 +18,14 @@ namespace SaintSender.Control
         {
             var inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadOnly);
-            MimeMessage[] mails = new MimeMessage[inbox.Count];
+            Mails = new MimeMessage[inbox.Count];
 
             for (int i = 0; i < inbox.Count; i++)
             {
-                mails[i] = inbox.GetMessage(i);
+                Mails[i] = inbox.GetMessage(i);
             }
 
-            return mails;
+            return Mails;
         }
     }
 }
