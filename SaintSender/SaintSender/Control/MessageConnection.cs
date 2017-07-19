@@ -16,6 +16,7 @@ namespace SaintSender.Control
             senderClient = new SmtpClient();
             this.imapInfo = imapInfo;
             this.smtpInfo = smtpInfo;
+            Connect();
         }
 
         private ImapClient receiverClient;
@@ -48,7 +49,7 @@ namespace SaintSender.Control
 
         public void Dispose()
         {
-            this.Disconnect();
+            Disconnect();
         }
 
         public void Login(string username, string password)

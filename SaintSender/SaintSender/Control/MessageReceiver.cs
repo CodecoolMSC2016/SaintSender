@@ -1,6 +1,10 @@
 ﻿using MailKit;
 using MailKit.Net.Imap;
 using MimeKit;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SaintSender.Control
 {
@@ -19,13 +23,10 @@ namespace SaintSender.Control
             var inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadOnly);
             Mails = new MimeMessage[inbox.Count];
-
-            for (int i = 0; i < inbox.Count; i++)
-            {
-                Mails[i] = inbox.GetMessage(i);
-            }
-
+            Parallel.For(0, inbox.Count, 
+                (i) => Mails[i] = inbox.GetMessageAsync(i).Result);
             return Mails;
         }
+
     }
 }

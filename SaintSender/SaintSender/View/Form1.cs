@@ -47,8 +47,8 @@ namespace SaintSender
         /// </summary>
         private void LoadMails()
         {
-            MimeMessage[] messages = client.DownloadMails();
-            ShowMails(messages);
+            //MimeMessage[] messages = client.DownloadMails();
+            //ShowMails(messages);
         }
 
         /// <summary>

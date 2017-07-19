@@ -1,51 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MimeKit;
+﻿using MimeKit;
 using SaintSender.Model;
-using System.Threading;
-using MailKit;
+using System;
 using System.Windows.Forms;
 
 namespace SaintSender.Control
 {
-    class SaintClient : IClient
+    internal class SaintClient : IClient
     {
-        public IClient INSTANCE { get; }
-        private IConnection connection;
         private IReceiver reciever;
         private ISender sender;
         private ISerializer serializer;
+        private ConnectionInfo imapInfo;
+        private ConnectionInfo smtpInfo;
+        private string userName;
+        private string password;
 
-
-        private SaintClient()
+        public SaintClient(
+            ConnectionInfo imapInfo,
+            ConnectionInfo smtpInfo,
+            string userName,
+            string password)
         {
-
+            this.userName = userName;
+            this.password = password;
+            this.imapInfo = imapInfo;
+            this.smtpInfo = smtpInfo;
+            serializer = new Serializer();
         }
 
         public MimeMessage[] DownloadMails()
         {
-            return reciever.DownloadMails();
-        }
-
-        public void Connect(ConnectionInfo imapInfo, ConnectionInfo smtpInfo)
-        {
-            connection = new MessageConnection(imapInfo, smtpInfo);
-            try
+            using (var connection = new MessageConnection(imapInfo, smtpInfo))
             {
-                connection.Connect();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error");
+                connection.Login(userName,password);
+                reciever = new MessageReceiver(connection.ReceiverClient);
+                return reciever.DownloadMails();
             }
         }
 
         public void SendMail(MimeMessage message)
         {
-            sender.SendMail(message);
+            using (var connection = new MessageConnection(imapInfo, smtpInfo))
+            {
+                connection.Login(userName, password);
+                sender = new MessageSender(connection.SenderClient);
+                sender.SendMail(message);
+            }
         }
 
         public void BackupMails()
@@ -56,18 +56,6 @@ namespace SaintSender.Control
         public void RestoreMails()
         {
             serializer.Restore(Properties.Settings.Default.BackupFolder);
-        }
-
-        public void Login(string userName, string password)
-        {
-            try
-            {
-                connection.Login(userName, password);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error");
-            }
         }
     }
 }
