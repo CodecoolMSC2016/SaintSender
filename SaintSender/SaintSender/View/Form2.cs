@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace SaintSender.View
     public partial class Form2 : MaterialForm
     {
         private readonly MaterialSkinManager materialSkinManager;
+        ControlManager cm;
+
         public Form2()
         {
             InitializeComponent();
@@ -30,7 +33,7 @@ namespace SaintSender.View
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            cm = new ControlManager(tabHolder);
             //TODO: Remove...
             emailWebBrowser.Navigate("https://dcrazed.com/html/kreative-demo/");
 ;
@@ -51,5 +54,37 @@ namespace SaintSender.View
             
         }
 
+        private void emailListView_DoubleClick(object sender, EventArgs e)
+        {
+            if ( emailListView.SelectedItems[0] != null )
+            {
+                cm.AddNewTab(emailListView.SelectedItems[0].Text, ControlManager.TabTypes.MailView);
+            }
+        }
+
+        private void btnReplyMail_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("asdasdasdasdasd");
+            viewEmailSplitContainer.SplitterDistance = 400;
+
+            RichTextBox richReplyMail = new RichTextBox();
+            richReplyMail.Parent = viewEmailSplitContainer.Panel2;
+            richReplyMail.Show();
+            richReplyMail.Dock = DockStyle.Fill;
+            richReplyMail.BackColor = SystemColors.ControlLight;
+            richReplyMail.BorderStyle = BorderStyle.None;
+
+            MaterialFlatButton mfb = new MaterialFlatButton();
+            mfb.Parent = viewEmailButtonHolder;
+            mfb.Left = 5;
+            mfb.Top = btnReplyMail.Top;
+            mfb.Text = "Close";
+            mfb.Click += (s, ea) =>
+            {
+                viewEmailSplitContainer.SplitterDistance = 570;
+                mfb.Dispose();
+                richReplyMail.Dispose();
+            };
+        }
     }
 }
