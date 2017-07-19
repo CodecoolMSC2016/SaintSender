@@ -48,7 +48,10 @@ namespace SaintSender.Control
             emailListView.TabIndex = 0;
             emailListView.UseCompatibleStateImageBehavior = false;
             emailListView.View = System.Windows.Forms.View.Details;
-            emailListView.DoubleClick += EmailListView_DoubleClick;
+            emailListView.DoubleClick += (emailListViewSender, emailListViewEventArgs) =>
+            {
+                //TODO: EmailListView Double Click
+            };
 
             TabPage tabInbox = new TabPage();
             tabInbox.Controls.Add(emailListView);
@@ -63,12 +66,7 @@ namespace SaintSender.Control
             return tabInbox;
         }
 
-        private void EmailListView_DoubleClick(object sender, EventArgs e)
-        {
-            //TODO: EMailListView Double Click
-        }
-
-        public TabPage GetTabMail()
+        public TabPage GetTabMail(string title)
         {
             SplitContainer viewEmailSplitContainer = new SplitContainer();
             viewEmailSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -152,12 +150,17 @@ namespace SaintSender.Control
             tabMail.Padding = new System.Windows.Forms.Padding(3);
             tabMail.Size = new System.Drawing.Size(1073, 608);
             tabMail.TabIndex = 1;
-            tabMail.Text = "Rosszlanyok.hu regisztracio";
+            tabMail.Text = title;
             tabMail.UseVisualStyleBackColor = true;
 
 
 
             return tabMail;
         }        
+
+        public TabPage GetTabWriteEmail()
+        {
+            return null;
+        }
     }
 }

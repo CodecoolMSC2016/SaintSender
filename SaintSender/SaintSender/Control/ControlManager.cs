@@ -1,4 +1,5 @@
 ﻿using MaterialSkin.Controls;
+using SaintSender.Control;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace SaintSender.View
     public class ControlManager
     {
         public enum TabTypes : int { MailList, SendMail, MailView, Settings };
+        private ControlCollection cc = new ControlCollection();
         private List<MaterialTabControl> tabs = new List<MaterialTabControl>();
         private MaterialTabControl tabControl;
+
 
         public ControlManager(MaterialTabControl tabControl)
         {
@@ -39,7 +42,7 @@ namespace SaintSender.View
 
         private void AddNewMailViewTab(string title)
         {
-            tabControl.TabPages.Add(title);
+            tabControl.TabPages.Add(cc.GetTabMail(title));
            
         }
     }
