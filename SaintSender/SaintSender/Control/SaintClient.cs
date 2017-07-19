@@ -43,13 +43,6 @@ namespace SaintSender.Control
             }
         }
 
-        public void AutoRefresh()
-        {
-            //var inbox = connection.ReceiverClient.Inbox;
-            //inbox.CountChanged += (s) =>
-            // IMPLEMENT IN VIEW INSTEAD !!
-        }
-
         public void SendMail(MimeMessage message)
         {
             sender.SendMail(message);
