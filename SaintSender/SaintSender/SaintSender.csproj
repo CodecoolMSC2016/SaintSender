@@ -67,6 +67,7 @@
     <Compile Include="Control\IMessageConverter.cs" />
     <Compile Include="Control\ISerializer.cs" />
     <Compile Include="Model\Mail.cs" />
+    <Compile Include="Control\ControlManager.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
