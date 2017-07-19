@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SaintSender.View
 {
-    class ControlManager
+    public class ControlManager
     {
         public enum TabTypes : int { MailList, SendMail, MailView, Settings };
         private List<MaterialTabControl> tabs = new List<MaterialTabControl>();
@@ -40,7 +40,7 @@ namespace SaintSender.View
         private void AddNewMailViewTab(string title)
         {
             tabControl.TabPages.Add(title);
-            TabPage newMailPage = new TabPage();
+           
         }
     }
 }

@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlCollection.cs" />
     <Compile Include="Control\IClient.cs" />
     <Compile Include="Control\IMessageConverter.cs" />
     <Compile Include="Control\ISerializer.cs" />
