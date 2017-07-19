@@ -97,18 +97,9 @@ namespace SaintSender.View
             client.SendMail(message);
         }
 
-        private void EmtpySendMailFields()
-        {
-            txtMailTo.Text = String.Empty;
-            txtMailTo.Text = String.Empty;
-            txtMailCc.Text = String.Empty;
-            txtMailBcc.Text = String.Empty;
-
-            richMailBody.Text = String.Empty;
-            richMailSubject.Text = String.Empty;
         private void emailListView_DoubleClick(object sender, EventArgs e)
         {
-            if ( emailListView.SelectedItems[0] != null )
+            if (emailListView.SelectedItems[0] != null)
             {
                 cm.AddNewTab(emailListView.SelectedItems[0].Text, ControlManager.TabTypes.MailView);
             }
@@ -138,5 +129,17 @@ namespace SaintSender.View
                 richReplyMail.Dispose();
             };
         }
+        private void EmtpySendMailFields()
+        {
+            txtMailTo.Text = String.Empty;
+            txtMailTo.Text = String.Empty;
+            txtMailCc.Text = String.Empty;
+            txtMailBcc.Text = String.Empty;
+
+            richMailBody.Text = String.Empty;
+            richMailSubject.Text = String.Empty;
+
+        }
+        
     }
 }
