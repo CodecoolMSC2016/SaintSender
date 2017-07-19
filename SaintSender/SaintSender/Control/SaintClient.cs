@@ -13,7 +13,7 @@ namespace SaintSender.Control
 {
     class SaintClient : IClient
     {
-        public IClient INSTANCE { get; }
+        public static IClient INSTANCE { get; } = new SaintClient();
         private IConnection connection;
         private IReceiver reciever;
         private ISender sender;
@@ -22,7 +22,7 @@ namespace SaintSender.Control
 
         private SaintClient()
         {
-
+            serializer = new Serializer();
         }
 
         public MimeMessage[] DownloadMails()
@@ -33,6 +33,8 @@ namespace SaintSender.Control
         public void Connect(ConnectionInfo imapInfo, ConnectionInfo smtpInfo)
         {
             connection = new MessageConnection(imapInfo, smtpInfo);
+            reciever = new MessageReceiver(connection.ReceiverClient);
+            sender = new MessageSender(connection.SenderClient);
             try
             {
                 connection.Connect();
