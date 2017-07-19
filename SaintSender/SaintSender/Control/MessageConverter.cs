@@ -28,6 +28,8 @@ namespace SaintSender.Control
         MimeMessage ToMimeMessage(Mail mail)
         {
             // TODO: implement Mail to MimeMessage
+            MimeMessage message = new MimeMessage();
+            message
             return null;
         }
     }
