@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlCollection.cs" />
     <Compile Include="Control\IClient.cs" />
     <Compile Include="Control\IConnection.cs" />
     <Compile Include="Control\MessageConnection.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Model\Folder.cs" />
     <Compile Include="Control\Serializer.cs" />
     <Compile Include="Model\Mail.cs" />
+    <Compile Include="Control\ControlManager.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

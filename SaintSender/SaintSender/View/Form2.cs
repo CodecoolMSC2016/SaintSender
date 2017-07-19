@@ -22,6 +22,7 @@ namespace SaintSender.View
     {
         private readonly MaterialSkinManager materialSkinManager;
         private IClient client;
+        ControlManager cm;
 
         public Form2()
         {
@@ -46,6 +47,8 @@ namespace SaintSender.View
             txtMailFrom.Text = "imaptest420@gmail.com";
             Text = "Imap Test (" + "imaptest420@gmail.com)";
 
+            cm = new ControlManager(tabHolder);
+            //TODO: Remove...
             emailWebBrowser.Navigate("https://dcrazed.com/html/kreative-demo/");
         }
         private delegate void AddToView(ListViewItem item);
@@ -103,6 +106,37 @@ namespace SaintSender.View
 
             richMailBody.Text = String.Empty;
             richMailSubject.Text = String.Empty;
+        private void emailListView_DoubleClick(object sender, EventArgs e)
+        {
+            if ( emailListView.SelectedItems[0] != null )
+            {
+                cm.AddNewTab(emailListView.SelectedItems[0].Text, ControlManager.TabTypes.MailView);
+            }
+        }
+
+        private void btnReplyMail_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("asdasdasdasdasd");
+            viewEmailSplitContainer.SplitterDistance = 400;
+
+            RichTextBox richReplyMail = new RichTextBox();
+            richReplyMail.Parent = viewEmailSplitContainer.Panel2;
+            richReplyMail.Show();
+            richReplyMail.Dock = DockStyle.Fill;
+            richReplyMail.BackColor = SystemColors.ControlLight;
+            richReplyMail.BorderStyle = BorderStyle.None;
+
+            MaterialFlatButton mfb = new MaterialFlatButton();
+            mfb.Parent = viewEmailButtonHolder;
+            mfb.Left = 5;
+            mfb.Top = btnReplyMail.Top;
+            mfb.Text = "Close";
+            mfb.Click += (s, ea) =>
+            {
+                viewEmailSplitContainer.SplitterDistance = 570;
+                mfb.Dispose();
+                richReplyMail.Dispose();
+            };
         }
     }
 }
