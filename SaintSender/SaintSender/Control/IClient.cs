@@ -1,4 +1,5 @@
 ﻿using MimeKit;
+using SaintSender.Model;
 using System.Collections.Generic;
 
 namespace SaintSender.Control
@@ -9,11 +10,11 @@ namespace SaintSender.Control
         void Initialize();
         // returns all messages
         MimeMessage[] DownloadMails();
-        void Connect(string url, uint port);
+        void Connect(ConnectionInfo smtpInfo, ConnectionInfo imapInfo);
         void AutoRefresh();
-        void SendMail();
+        void SendMail(MimeMessage message);
         void BackupMails();
         void RestoreMails();
-        void Login();
+        void Login(string username, string password);
     }
 }

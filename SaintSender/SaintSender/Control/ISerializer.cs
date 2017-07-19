@@ -1,4 +1,5 @@
-﻿using SaintSender.Model;
+﻿using MimeKit;
+using SaintSender.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace SaintSender.Control
 {
     interface ISerializer
     {
-        void Save(Mail[] mails, string folderName);
-        Mail[] Restore(string folderName);
+        void Save(MimeMessage[] mails, string folderName);
+        MimeMessage[] Restore(string folderName);
     }
 }
