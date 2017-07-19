@@ -7,6 +7,8 @@ namespace SaintSender.Control
     /// </summary>
     internal interface IReceiver
     {
+        MimeMessage[] Mails { get; }
+
         // constructor(ImapClient receiverClient)
         MimeMessage[] DownloadMails();
     }
