@@ -12,7 +12,7 @@ namespace SaintSender.Control
         MimeMessage[] DownloadMails();
         void Connect(ConnectionInfo smtpInfo, ConnectionInfo imapInfo);
         void AutoRefresh();
-        void SendMail();
+        void SendMail(MimeMessage message);
         void BackupMails();
         void RestoreMails();
         void Login(string username, string password);
