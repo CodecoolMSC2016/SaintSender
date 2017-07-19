@@ -41,10 +41,14 @@ namespace SaintSender.Control
 
             message.Body = new TextPart("plain") { Text = mail.Body };
 
-            IEnumerable<InternetAddress> cc = mail.Cc.Select(c => InternetAddress.Parse(c));
+            IEnumerable<InternetAddress> cc = mail.Cc
+                .Where(c => c != String.Empty)
+                .Select(c => InternetAddress.Parse(c));
             message.Cc.AddRange(cc);
 
-            IEnumerable<InternetAddress> bcc = mail.Bcc.Select(b => InternetAddress.Parse(b));
+            IEnumerable<InternetAddress> bcc = mail.Bcc
+                .Where(b => b != String.Empty)
+                .Select(b => InternetAddress.Parse(b));
             message.Bcc.AddRange(bcc);
 
             return message;
