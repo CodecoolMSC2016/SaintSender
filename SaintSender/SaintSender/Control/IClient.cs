@@ -1,16 +1,15 @@
 ﻿using MimeKit;
+using SaintSender.Model;
 using System.Collections.Generic;
 
 namespace SaintSender.Control
 {
     internal interface IClient
     {
-        void DownloadMails();
-        void Connect();
-        void AutoRefresh();
-        void SendMail();
+        // returns all messages
+        MimeMessage[] DownloadMails();
+        void SendMail(MimeMessage message);
         void BackupMails();
         void RestoreMails();
-        void Login();
     }
 }
