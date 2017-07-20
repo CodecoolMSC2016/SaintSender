@@ -21,13 +21,13 @@ namespace SaintSender.Control
             MatchCollection matches = regex.Matches("....");
 
             // needed the Form property of MimeMessage
-            foreach (MailboxAddress mailbox in message.From.Mailboxes)
-            {
-                if (Regex.IsMatch(mailbox.Address, pattern))
-                {
-                    result.Add(mailbox);
-                }
-            }
+            //foreach (MailboxAddress mailbox in message.From.Mailboxes)
+            //{
+            //    if (Regex.IsMatch(mailbox.Address, pattern))
+            //    {
+            //        result.Add(mailbox);
+            //    }
+            //}
         }
 
         public List<InternetAddress> SearchByName(string pattern)
@@ -38,13 +38,13 @@ namespace SaintSender.Control
             MatchCollection matches = regex.Matches("....");
 
             // needed the Form property of MimeMessage
-            foreach (MailboxAddress mailbox in message.From.Mailboxes)
-            {
-                if (Regex.IsMatch(mailbox.Name, pattern))
-                {
-                    result.Add(mailbox);
-                }
-            }
+            //foreach (MailboxAddress mailbox in message.From.Mailboxes)
+            //{
+            //    if (Regex.IsMatch(mailbox.Name, pattern))
+            //    {
+            //        result.Add(mailbox);
+            //    }
+            //}
             return result;
         }
     }
