@@ -1,5 +1,6 @@
 ﻿using MimeKit;
 using SaintSender.Model;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -9,20 +10,20 @@ namespace SaintSender.Control
     {
         public MimeMessage[] Restore(string folderName)
         {
-            //// folderName should be a full path
-            //string[] filePaths = Directory.GetFiles(Path.GetDirectoryName(folderName));
+            string fileName = Path.GetDirectoryName(folderName);
 
-            //MimeMessage[] mails = new MimeMessage[filePaths.Length];
-            //BinaryFormatter bf = new BinaryFormatter();
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(fileName, FileMode.Open);
+            List<Mail> mails = (List<Mail>)bf.Deserialize(stream);
+            stream.Close();
 
-            //for (int i = 0; i < mails.Length; i++)
-            //{
-            //    string fileName = filePaths[i];
-            //    FileStream stream = new FileStream(fileName, FileMode.Open);
-            //    mails[i] = (MimeMessage)bf.Deserialize(stream);
-            //    stream.Close();
-            //}
-            return null;
+            MimeMessage[] messages = new MimeMessage[mails.Count];
+            MessageConverter converter = new MessageConverter();
+            for (int i = 0; i < mails.Count; i++)
+            {
+                messages[i] = converter.ToMimeMessage(mails[i]);
+            }
+            return messages;
         }
 
         public void Save(MimeMessage[] messages, string folderName)
