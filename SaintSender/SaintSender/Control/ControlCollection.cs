@@ -1,11 +1,13 @@
 ﻿using MaterialSkin.Controls;
 using MimeKit;
 using SaintSender.Model;
+using SaintSender.View;
 using System;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SaintSender.View.ControlManager;
 
 namespace SaintSender.Control
 {
@@ -49,6 +51,18 @@ namespace SaintSender.Control
             emailListView.View = System.Windows.Forms.View.Details;
             emailListView.DoubleClick += (emailListViewSender, emailListViewEventArgs) =>
             {
+                ControlManager cm = ControlManager.INSTANCE;
+                var selectedItem = emailListView.SelectedItems[0];
+                string subject = selectedItem.SubItems[0].Text;
+                int mailIndex = emailListView.Items.IndexOf(selectedItem);
+                string body = client.Receiver.Mails[mailIndex].HtmlBody;
+                subject = (subject.Length > 5) ? subject.Substring(0, 5) + ".." : subject;
+                TabPage tab = cm.AddNewTab(subject, TabTypes.MailView);
+                cm.GetMailWebBrowser(tab).DocumentText = body;
+                var control = cm.TabControl;
+                int lastIndex = control.TabCount - 1;
+                control.SelectTab(lastIndex);
+                
                 //TODO: EmailListView Double Click
             };
 
@@ -61,7 +75,6 @@ namespace SaintSender.Control
             tabInbox.TabIndex = 0;
             tabInbox.Text = title;
             tabInbox.UseVisualStyleBackColor = true;
-
             return tabInbox;
         }
 
@@ -89,10 +102,10 @@ namespace SaintSender.Control
             viewEmailButtonHolder.Size = new System.Drawing.Size(1067, 48);
             viewEmailButtonHolder.TabIndex = 19;
 
-            MaterialFlatButton btnReplyMail = new MaterialFlatButton();
+            MaterialRaisedButton btnReplyMail = new MaterialRaisedButton();
             btnReplyMail.AutoSize = true;
             btnReplyMail.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            btnReplyMail.BackColor = System.Drawing.Color.Silver;
+            btnReplyMail.BackColor = System.Drawing.Color.Transparent;
             btnReplyMail.Depth = 0;
             btnReplyMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             btnReplyMail.Icon = null;
@@ -105,6 +118,7 @@ namespace SaintSender.Control
             btnReplyMail.TabIndex = 8;
             btnReplyMail.Text = "REPLY TO MAIL";
             btnReplyMail.UseVisualStyleBackColor = false;
+            btnReplyMail.Anchor = AnchorStyles.Right;
             btnReplyMail.Click += (btnReplyMailSender, btnReplyMainEventArgs) =>
             {
                 viewEmailSplitContainer.SplitterDistance = 400;
@@ -116,11 +130,12 @@ namespace SaintSender.Control
                 richReplyMail.BackColor = SystemColors.ControlLight;
                 richReplyMail.BorderStyle = BorderStyle.None;
 
-                MaterialFlatButton mfb = new MaterialFlatButton();
+                MaterialRaisedButton mfb = new MaterialRaisedButton();
                 mfb.Parent = viewEmailButtonHolder;
                 mfb.Left = 5;
                 mfb.Top = btnReplyMail.Top;
                 mfb.Text = "Close";
+                mfb.BackColor = Color.Transparent;
                 mfb.Click += (s, ea) =>
                 {
                     viewEmailSplitContainer.SplitterDistance = 570;
@@ -410,10 +425,14 @@ namespace SaintSender.Control
                 sendMail.ContinueWith((task) =>
                 {
                     currenTab.Invoke(new Hide((p) => p.Dispose()), currenTab);
+                    var cm = ControlManager.INSTANCE;
+                    int lastIndex = cm.TabControl.TabCount - 1;
+                    cm.TabControl.Invoke(new Select((control) => control.SelectedIndex = lastIndex), cm.TabControl);
                 });
             };
 
         }
         private delegate void Hide(TabPage page);
+        private delegate void Select(TabControl control);
     }
 }

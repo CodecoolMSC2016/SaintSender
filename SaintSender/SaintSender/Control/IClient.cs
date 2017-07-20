@@ -6,7 +6,8 @@ namespace SaintSender.Control
 {
     internal interface IClient
     {
-
+        IReceiver Receiver { get; }
+        int MailCount { get; }
         ConnectionInfo ImapInfo { get; set; }
         ConnectionInfo SmtpInfo { get; set; }
         string UserName { get; set; }

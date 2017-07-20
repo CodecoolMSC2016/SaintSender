@@ -7,13 +7,14 @@ namespace SaintSender.Control
 {
     internal class SaintClient : IClient
     {
-        private IReceiver reciever;
+        public IReceiver Receiver { get; private set; }
         private ISender sender;
         private ISerializer serializer;
         public ConnectionInfo ImapInfo { get; set; }
         public ConnectionInfo SmtpInfo { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public int MailCount { get; private set; }
 
         public static IClient INSTANCE { get; } = new SaintClient();
 
@@ -27,8 +28,10 @@ namespace SaintSender.Control
             using (var connection = new MessageConnection(ImapInfo, SmtpInfo))
             {
                 connection.Login(UserName,Password);
-                reciever = new MessageReceiver(connection.ReceiverClient);
-                return reciever.DownloadMails();
+                Receiver = new MessageReceiver(connection.ReceiverClient);
+                MimeMessage[] mails = Receiver.DownloadMails();
+                MailCount = mails.Length;
+                return mails;
             }
         }
 
@@ -44,7 +47,7 @@ namespace SaintSender.Control
 
         public void BackupMails()
         {
-            serializer.Save(reciever.Mails, Properties.Settings.Default.BackupFolder);
+            serializer.Save(Receiver.Mails, Properties.Settings.Default.BackupFolder);
         }
 
         public void RestoreMails()
