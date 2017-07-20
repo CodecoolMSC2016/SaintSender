@@ -6,7 +6,11 @@ namespace SaintSender.Control
 {
     internal interface IClient
     {
-        // returns all messages
+
+        ConnectionInfo ImapInfo { get; set; }
+        ConnectionInfo SmtpInfo { get; set; }
+        string UserName { get; set; }
+        string Password { get; set; }
         MimeMessage[] DownloadMails();
         void SendMail(MimeMessage message);
         void BackupMails();

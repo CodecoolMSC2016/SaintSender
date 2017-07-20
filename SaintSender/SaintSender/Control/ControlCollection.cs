@@ -1,11 +1,18 @@
 ﻿using MaterialSkin.Controls;
+using MimeKit;
+using SaintSender.Model;
+using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SaintSender.Control
 {
     internal class ControlCollection
     {
+        private IClient client = SaintClient.INSTANCE;
+
         public TabPage getTabInbox(string title = "Inbox")
         {
             ColumnHeader columnHeader1 = new ColumnHeader();
@@ -363,8 +370,50 @@ namespace SaintSender.Control
             tabWriteEmail.Size = new System.Drawing.Size(1073, 608);
             tabWriteEmail.TabIndex = 2;
             tabWriteEmail.Text = title;
+            txtMailFrom.Text = "imaptest420@gmail.com";
+
+            HandleEmailSendEvent(tabWriteEmail);
 
             return tabWriteEmail;
         }
+
+        private void HandleEmailSendEvent(TabPage currenTab)
+        {
+
+            var btnSendMail = currenTab.Controls.Find("btnSendMail", true)[0];
+            var txtMailFrom = currenTab.Controls.Find("txtMailFrom", true)[0];
+            var txtMailTo = currenTab.Controls.Find("txtMailTo", true)[0];
+            var richMailSubject = currenTab.Controls.Find("richMailSubject", true)[0];
+            var richMailBody = currenTab.Controls.Find("richMailBody", true)[0];
+            var txtMailCc = currenTab.Controls.Find("txtMailCc", true)[0];
+            var txtMailBcc = currenTab.Controls.Find("txtMailBcc", true)[0];
+
+            btnSendMail.Click += (s, e) =>
+            {
+                string[] from = txtMailFrom.Text.Trim().Split(',');
+                string[] to = txtMailTo.Text.Trim().Split(',');
+                string[] cc = txtMailCc.Text.Split(',');
+                string[] bcc = txtMailCc.Text.Split(',');
+
+                string subject = richMailSubject.Text;
+                string body = richMailSubject.Text;
+
+                Task sendMail = new Task(() =>
+                {
+                    MessageConverter convert = new MessageConverter();
+                    Mail mail = new Mail(from, to, DateTime.Now, subject, body, cc, bcc);
+                    MimeMessage message = convert.ToMimeMessage(mail);
+                    client.SendMail(message);
+                });
+                sendMail.Start();
+
+                sendMail.ContinueWith((task) =>
+                {
+                    currenTab.Invoke(new Hide((p) => p.Dispose()), currenTab);
+                });
+            };
+
+        }
+        private delegate void Hide(TabPage page);
     }
 }

@@ -10,29 +10,23 @@ namespace SaintSender.Control
         private IReceiver reciever;
         private ISender sender;
         private ISerializer serializer;
-        private ConnectionInfo imapInfo;
-        private ConnectionInfo smtpInfo;
-        private string userName;
-        private string password;
+        public ConnectionInfo ImapInfo { get; set; }
+        public ConnectionInfo SmtpInfo { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
 
-        public SaintClient(
-            ConnectionInfo imapInfo,
-            ConnectionInfo smtpInfo,
-            string userName,
-            string password)
+        public static IClient INSTANCE { get; } = new SaintClient();
+
+        private SaintClient()
         {
-            this.userName = userName;
-            this.password = password;
-            this.imapInfo = imapInfo;
-            this.smtpInfo = smtpInfo;
             serializer = new Serializer();
         }
 
         public MimeMessage[] DownloadMails()
         {
-            using (var connection = new MessageConnection(imapInfo, smtpInfo))
+            using (var connection = new MessageConnection(ImapInfo, SmtpInfo))
             {
-                connection.Login(userName,password);
+                connection.Login(UserName,Password);
                 reciever = new MessageReceiver(connection.ReceiverClient);
                 return reciever.DownloadMails();
             }
@@ -40,9 +34,9 @@ namespace SaintSender.Control
 
         public void SendMail(MimeMessage message)
         {
-            using (var connection = new MessageConnection(imapInfo, smtpInfo))
+            using (var connection = new MessageConnection(ImapInfo, SmtpInfo))
             {
-                connection.Login(userName, password);
+                connection.Login(UserName, Password);
                 sender = new MessageSender(connection.SenderClient);
                 sender.SendMail(message);
             }
