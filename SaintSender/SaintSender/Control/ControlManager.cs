@@ -1,6 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using MimeKit;
 using SaintSender.Control;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,7 +64,11 @@ namespace SaintSender.View
         {
             TabPage tabMailList = cc.getTabInbox(title);
             TabControl.TabPages.Add(tabMailList);
-            new Task(() => ShowEmails(tabMailList)).Start();
+            //TabControl.Invoke(new Action(() => TabControl.TabPages.Add(tabMailList)));
+            //new Task(() =>
+            //{
+            //    tabMailList.Invoke(new Action(() => ShowEmails(tabMailList)));
+            //}).Start();
 
             return tabMailList;
         }
@@ -95,12 +100,13 @@ namespace SaintSender.View
             emailListView.Items.Add(item);
         }
 
-        private void ShowEmails(TabPage page)
+        public void ShowEmails(TabPage page, MimeMessage[] mails = null)
         {
             var emailListView = GetMailListView(page);
-            
-            MimeMessage[] mails = client.DownloadMails();
-           
+            mails = (mails == null) ? client.DownloadMails() : mails;
+            emailListView.Invoke(new Action(() => emailListView.Items.Clear()));
+
+            Array.Reverse(mails);
             foreach (MimeMessage mail in mails)
             {
                 var item = new ListViewItem(new string[] { mail.Subject, mail.From.ToString(), mail.Date.ToString() });

@@ -54,6 +54,8 @@ namespace SaintSender.Control
                 ControlManager cm = ControlManager.INSTANCE;
                 var selectedItem = emailListView.SelectedItems[0];
                 string subject = selectedItem.SubItems[0].Text;
+                if (subject == String.Empty)
+                    subject = selectedItem.SubItems[1].Text;
                 int mailIndex = emailListView.Items.IndexOf(selectedItem);
                 string body = client.Receiver.Mails[mailIndex].HtmlBody;
                 subject = (subject.Length > 5) ? subject.Substring(0, 5) + ".." : subject;

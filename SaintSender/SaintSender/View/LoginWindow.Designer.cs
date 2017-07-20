@@ -52,6 +52,7 @@ namespace SaintSender.View
             this.materialSingleLineTextField1.Size = new System.Drawing.Size(257, 23);
             this.materialSingleLineTextField1.TabIndex = 0;
             this.materialSingleLineTextField1.TabStop = false;
+            this.materialSingleLineTextField1.Text = "imaptest420@gmail.com";
             this.materialSingleLineTextField1.UseSystemPasswordChar = false;
             // 
             // materialLabel1
@@ -90,13 +91,14 @@ namespace SaintSender.View
             this.materialSingleLineTextField2.MaxLength = 32767;
             this.materialSingleLineTextField2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSingleLineTextField2.Name = "materialSingleLineTextField2";
-            this.materialSingleLineTextField2.PasswordChar = '\0';
+            this.materialSingleLineTextField2.PasswordChar = '*';
             this.materialSingleLineTextField2.SelectedText = "";
             this.materialSingleLineTextField2.SelectionLength = 0;
             this.materialSingleLineTextField2.SelectionStart = 0;
             this.materialSingleLineTextField2.Size = new System.Drawing.Size(257, 23);
             this.materialSingleLineTextField2.TabIndex = 3;
             this.materialSingleLineTextField2.TabStop = false;
+            this.materialSingleLineTextField2.Text = "024tsetpami";
             this.materialSingleLineTextField2.UseSystemPasswordChar = false;
             // 
             // materialRaisedButton1
@@ -113,6 +115,7 @@ namespace SaintSender.View
             this.materialRaisedButton1.TabIndex = 5;
             this.materialRaisedButton1.Text = "LOG IN";
             this.materialRaisedButton1.UseVisualStyleBackColor = true;
+            this.materialRaisedButton1.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
             // LoginWindow
             // 
@@ -127,6 +130,7 @@ namespace SaintSender.View
             this.Name = "LoginWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginWindow_FormClosed);
             this.Load += new System.EventHandler(this.LoginWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

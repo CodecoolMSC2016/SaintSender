@@ -1,4 +1,5 @@
-﻿using MimeKit;
+﻿using MailKit;
+using MimeKit;
 using SaintSender.Model;
 using System.Collections.Generic;
 
@@ -16,5 +17,6 @@ namespace SaintSender.Control
         void SendMail(MimeMessage message);
         void BackupMails();
         void RestoreMails();
+        bool Login();
     }
 }

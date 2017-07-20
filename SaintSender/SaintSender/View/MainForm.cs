@@ -1,9 +1,12 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using MimeKit;
 using SaintSender.Control;
 using SaintSender.Model;
 using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SaintSender.View.ControlManager;
 
@@ -14,39 +17,39 @@ namespace SaintSender.View
         private readonly MaterialSkinManager materialSkinManager;
         private IClient client = SaintClient.INSTANCE;
         private ControlManager cm = ControlManager.INSTANCE;
+        private MaterialForm loginWindow;
 
         public MainForm()
         {
             InitializeComponent();
+
+
             // Initialize MaterialSkinManager
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             //materialSkinManager.
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            ConnectionInfo imapInfo = new ConnectionInfo("imap.gmail.com", 993);
-            ConnectionInfo smtpInfo = new ConnectionInfo("smtp.gmail.com", 465);
-            client.ImapInfo = imapInfo;
-            client.SmtpInfo = smtpInfo;
-            client.UserName = "imaptest420@gmail.com";
-            client.Password = "024tsetpami";
-
-            cm.FormWidth = Width;
-            cm.TabControl = tabHolder;
-
-            TabPage inbox = cm.AddNewTab(" INBOX ", TabTypes.MailList);
-            cm.GetMailListView(inbox);
-            tabHolder.TabPages.Remove(tabHolder.TabPages[0]);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            LoginWindow lw = new LoginWindow();
-            lw.Show();
+            loginWindow = new LoginWindow();
+            loginWindow.Owner = this;
+            loginWindow.Show();
+            EnabledChanged += (s, eArg) =>
+            {
+                ResetForm();
+                cm.FormWidth = Width;
+                cm.TabControl = tabHolder;
+                TabPage inbox = cm.AddNewTab(" INBOX ", TabTypes.MailList);
+                Task loadMails = new Task(() => cm.ShowEmails(inbox));
+                Cursor.Current = Cursors.WaitCursor;
+                loadMails.Start();
+                tabHolder.TabPages.Remove(tabHolder.TabPages[0]);
+                loadMails.ContinueWith((task) => AutoRefresh(), TaskContinuationOptions.OnlyOnRanToCompletion);
+            };
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -60,8 +63,6 @@ namespace SaintSender.View
         private void btnInbox_Click(object sender, EventArgs e)
         {
             tabHolder.SelectTab(0);
-            //TabPage inbox = cm.AddNewTab(" INBOX ", ControlManager.TabTypes.MailList);
-            //SelectLastTab();
         }
 
         private void btnCloseTab_Click(object sender, EventArgs e)
@@ -73,12 +74,45 @@ namespace SaintSender.View
                 int maxIndex = tabHolder.TabCount - 1;
                 if (selectedIndex > 0)
                 {
-                    //int selectedIndex = (tabHolder.SelectedIndex > 0) ? tabHolder.SelectedIndex - 1 : 0;
                     selectedIndex = (selectedIndex == maxIndex) ? selectedIndex - 1 : selectedIndex;
                     tabHolder.TabPages.Remove(tab);
                     SelectLastTab(selectedIndex);
                 }
             }
+        }
+
+        private void AutoRefresh()
+        {
+            Task.Run(() =>
+            {
+                MimeMessage[] mails;
+                TabPage inboxPage;
+                while (Enabled)
+                {
+                    mails = client.DownloadMails();
+                    inboxPage = tabHolder.TabPages[0];
+                    int currentMailCount = cm.GetMailListView(inboxPage).Items.Count;
+
+                    if (mails.Length > currentMailCount)
+                    {
+                        cm.ShowEmails(inboxPage);
+                        ShowNotification(mails.Length - currentMailCount);
+                    }
+                }
+            });
+        }
+
+        private void ShowNotification(int newMessageCount)
+        {
+            NotifyIcon icon = new NotifyIcon()
+            {
+                Icon = SystemIcons.Information,
+                Visible = true,
+                BalloonTipTitle = "New message!",
+                BalloonTipText = "You have " + newMessageCount + " new message(s)."
+            };
+            icon.ShowBalloonTip(50000);
+
         }
 
         private void SelectLastTab(int index)
@@ -89,6 +123,29 @@ namespace SaintSender.View
         private void MainForm_Resize(object sender, EventArgs e)
         {
             cm.FormWidth = Width;
+        }
+
+        public void ResetForm()
+        {
+            TabPage page;
+            TabPage inboxPage = tabHolder.TabPages[0];
+            tabHolder.SelectedIndex = 0;
+            int tabCount = tabHolder.TabCount;
+            if (tabCount > 1)
+            {
+                for (int i = 0; i < tabCount - 1; i++)
+                {
+                    page = tabHolder.TabPages[1];
+                    tabHolder.TabPages.Remove(page);
+                }
+            }
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            LoginWindow login = new LoginWindow();
+            login.Owner = this;
+            login.Show();
         }
     }
 }
