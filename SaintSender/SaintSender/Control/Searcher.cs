@@ -10,7 +10,7 @@ namespace SaintSender.Control
 
         public MimeMessage[] SearchMessage(string pattern)
         {
-            List<MimeMessage> result = new List<MimeMessage>();
+            HashSet<MimeMessage> searchResultSet = new HashSet<MimeMessage>();
 
             MimeMessage[] messages = receiver.Mails;
 
@@ -18,18 +18,21 @@ namespace SaintSender.Control
             {
                 if (Regex.IsMatch(messages[i].Subject, pattern, RegexOptions.IgnoreCase))
                 {
-                    result.Add(messages[i]);
+                    searchResultSet.Add(messages[i]);
                 }
 
                 foreach (InternetAddress email in messages[i].From)
                 {
                     if (Regex.IsMatch(email.ToString(), pattern, RegexOptions.IgnoreCase))
                     {
-                        result.Add(messages[i]);
+                        searchResultSet.Add(messages[i]);
                     }
                 }
             }
-            return result.ToArray();
+            MimeMessage[] searchResultArray = new MimeMessage[searchResultSet.Count];
+            searchResultSet.CopyTo(searchResultArray);
+
+            return searchResultArray;
         }
     }
 }
