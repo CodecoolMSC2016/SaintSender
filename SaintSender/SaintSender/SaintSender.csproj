@@ -76,6 +76,7 @@
     <Compile Include="Control\MessageReceiver.cs" />
     <Compile Include="Model\ConnectionInfo.cs" />
     <Compile Include="Model\Folder.cs" />
+    <Compile Include="Control\Searcher.cs" />
     <Compile Include="Control\Serializer.cs" />
     <Compile Include="Model\Mail.cs" />
     <Compile Include="Control\ControlManager.cs" />
