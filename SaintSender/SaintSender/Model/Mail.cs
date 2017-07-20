@@ -7,8 +7,8 @@ namespace SaintSender
     {
         public Mail()
         {
-            
         }
+
         [NonSerialized]
         private bool Seen;
 

@@ -2,7 +2,7 @@
 
 namespace SaintSender.View
 {
-    partial class Form2
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,11 +31,11 @@ namespace SaintSender.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("salalalal");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("rtrturturtu");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("");
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("salalalal");
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem("rtrturturtu");
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
             this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.tabHolder = new MaterialSkin.Controls.MaterialTabControl();
@@ -67,13 +67,16 @@ namespace SaintSender.View
             this.txtMailTo = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.btnSettings = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnLogOut = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnSpam = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnStarred = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnDrafts = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnInbox = new MaterialSkin.Controls.MaterialFlatButton();
-            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.button1 = new System.Windows.Forms.Button();
+            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabHolder.SuspendLayout();
             this.tabInbox.SuspendLayout();
             this.tabMail.SuspendLayout();
@@ -96,10 +99,10 @@ namespace SaintSender.View
             this.materialListView1.FullRowSelect = true;
             this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.materialListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8});
+            listViewItem17,
+            listViewItem18,
+            listViewItem19,
+            listViewItem20});
             this.materialListView1.Location = new System.Drawing.Point(279, 190);
             this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
@@ -172,7 +175,6 @@ namespace SaintSender.View
             this.emailListView.TabIndex = 0;
             this.emailListView.UseCompatibleStateImageBehavior = false;
             this.emailListView.View = System.Windows.Forms.View.Details;
-            this.emailListView.DoubleClick += new System.EventHandler(this.emailListView_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -255,7 +257,6 @@ namespace SaintSender.View
             this.btnReplyMail.TabIndex = 8;
             this.btnReplyMail.Text = "REPLY TO MAIL";
             this.btnReplyMail.UseVisualStyleBackColor = false;
-            this.btnReplyMail.Click += new System.EventHandler(this.btnReplyMail_Click);
             // 
             // tabWriteEmail
             // 
@@ -496,6 +497,8 @@ namespace SaintSender.View
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.materialSingleLineTextField1);
             this.panel1.Controls.Add(this.btnSettings);
             this.panel1.Controls.Add(this.btnLogOut);
@@ -503,11 +506,31 @@ namespace SaintSender.View
             this.panel1.Controls.Add(this.btnStarred);
             this.panel1.Controls.Add(this.btnDrafts);
             this.panel1.Controls.Add(this.btnInbox);
+            this.panel1.Controls.Add(this.materialFlatButton1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 86);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(199, 634);
             this.panel1.TabIndex = 3;
+            // 
+            // materialSingleLineTextField1
+            // 
+            this.materialSingleLineTextField1.Depth = 0;
+            this.materialSingleLineTextField1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.materialSingleLineTextField1.Hint = "";
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(0, 539);
+            this.materialSingleLineTextField1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.materialSingleLineTextField1.MaxLength = 32767;
+            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
+            this.materialSingleLineTextField1.PasswordChar = '\0';
+            this.materialSingleLineTextField1.SelectedText = "";
+            this.materialSingleLineTextField1.SelectionLength = 0;
+            this.materialSingleLineTextField1.SelectionStart = 0;
+            this.materialSingleLineTextField1.Size = new System.Drawing.Size(199, 23);
+            this.materialSingleLineTextField1.TabIndex = 6;
+            this.materialSingleLineTextField1.TabStop = false;
+            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
             // 
             // btnSettings
             // 
@@ -554,7 +577,7 @@ namespace SaintSender.View
             this.btnSpam.Depth = 0;
             this.btnSpam.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSpam.Icon = null;
-            this.btnSpam.Location = new System.Drawing.Point(0, 108);
+            this.btnSpam.Location = new System.Drawing.Point(0, 144);
             this.btnSpam.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnSpam.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSpam.Name = "btnSpam";
@@ -572,7 +595,7 @@ namespace SaintSender.View
             this.btnStarred.Depth = 0;
             this.btnStarred.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStarred.Icon = null;
-            this.btnStarred.Location = new System.Drawing.Point(0, 72);
+            this.btnStarred.Location = new System.Drawing.Point(0, 108);
             this.btnStarred.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnStarred.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnStarred.Name = "btnStarred";
@@ -590,7 +613,7 @@ namespace SaintSender.View
             this.btnDrafts.Depth = 0;
             this.btnDrafts.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDrafts.Icon = null;
-            this.btnDrafts.Location = new System.Drawing.Point(0, 36);
+            this.btnDrafts.Location = new System.Drawing.Point(0, 72);
             this.btnDrafts.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnDrafts.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnDrafts.Name = "btnDrafts";
@@ -608,7 +631,7 @@ namespace SaintSender.View
             this.btnInbox.Depth = 0;
             this.btnInbox.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnInbox.Icon = null;
-            this.btnInbox.Location = new System.Drawing.Point(0, 0);
+            this.btnInbox.Location = new System.Drawing.Point(0, 36);
             this.btnInbox.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnInbox.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnInbox.Name = "btnInbox";
@@ -619,24 +642,41 @@ namespace SaintSender.View
             this.btnInbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInbox.UseVisualStyleBackColor = true;
             // 
-            // materialSingleLineTextField1
+            // button1
             // 
-            this.materialSingleLineTextField1.Depth = 0;
-            this.materialSingleLineTextField1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.materialSingleLineTextField1.Hint = "";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(0, 539);
-            this.materialSingleLineTextField1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.materialSingleLineTextField1.MaxLength = 32767;
-            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
-            this.materialSingleLineTextField1.PasswordChar = '\0';
-            this.materialSingleLineTextField1.SelectedText = "";
-            this.materialSingleLineTextField1.SelectionLength = 0;
-            this.materialSingleLineTextField1.SelectionStart = 0;
-            this.materialSingleLineTextField1.Size = new System.Drawing.Size(199, 23);
-            this.materialSingleLineTextField1.TabIndex = 6;
-            this.materialSingleLineTextField1.TabStop = false;
-            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
+            this.button1.Location = new System.Drawing.Point(90, 330);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "new inbox";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // materialFlatButton1
+            // 
+            this.materialFlatButton1.AutoSize = true;
+            this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButton1.Depth = 0;
+            this.materialFlatButton1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.materialFlatButton1.Icon = null;
+            this.materialFlatButton1.Location = new System.Drawing.Point(0, 0);
+            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButton1.Name = "materialFlatButton1";
+            this.materialFlatButton1.Primary = false;
+            this.materialFlatButton1.Size = new System.Drawing.Size(199, 36);
+            this.materialFlatButton1.TabIndex = 8;
+            this.materialFlatButton1.Text = "WRITE MAIL";
+            this.materialFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.materialFlatButton1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(90, 359);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "new mail";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 
@@ -712,5 +752,8 @@ namespace SaintSender.View
         private System.Windows.Forms.Panel viewEmailButtonHolder;
         private MaterialSkin.Controls.MaterialFlatButton btnReplyMail;
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
+        private System.Windows.Forms.Button button1;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
+        private System.Windows.Forms.Button button2;
     }
 }
