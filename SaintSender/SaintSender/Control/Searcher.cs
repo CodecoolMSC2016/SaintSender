@@ -6,46 +6,30 @@ namespace SaintSender.Control
 {
     internal class Searcher
     {
-        //private string emailPattern = @"^(?("")("".+?(?<!\\)""@) |
-        //(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-        //                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\]) |
-        //(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
-        // validate the Email
-        //if (Regex.IsMatch(txtEmail.Text, emailPattern, RegexOptions.IgnoreCase))
+        private IReceiver receiver;
 
-        public void SearchByMailboxAddress(string pattern)
+        public MimeMessage[] SearchMessage(string pattern)
         {
-            List<InternetAddress> result = new List<InternetAddress>();
+            List<MimeMessage> result = new List<MimeMessage>();
 
-            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
-            MatchCollection matches = regex.Matches("....");
+            MimeMessage[] messages = receiver.Mails;
 
-            // needed the Form property of MimeMessage
-            foreach (MailboxAddress mailbox in message.From.Mailboxes)
+            for (int i = 0; i < messages.Length; i++)
             {
-                if (Regex.IsMatch(mailbox.Address, pattern))
+                if (Regex.IsMatch(messages[i].Subject, pattern, RegexOptions.IgnoreCase))
                 {
-                    result.Add(mailbox);
+                    result.Add(messages[i]);
+                }
+
+                foreach (InternetAddress email in messages[i].From)
+                {
+                    if (Regex.IsMatch(email.ToString(), pattern, RegexOptions.IgnoreCase))
+                    {
+                        result.Add(messages[i]);
+                    }
                 }
             }
-        }
-
-        public List<InternetAddress> SearchByName(string pattern)
-        {
-            List<InternetAddress> result = new List<InternetAddress>();
-
-            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
-            MatchCollection matches = regex.Matches("....");
-
-            // needed the Form property of MimeMessage
-            foreach (MailboxAddress mailbox in message.From.Mailboxes)
-            {
-                if (Regex.IsMatch(mailbox.Name, pattern))
-                {
-                    result.Add(mailbox);
-                }
-            }
-            return result;
+            return result.ToArray();
         }
     }
 }
