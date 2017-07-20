@@ -31,40 +31,12 @@ namespace SaintSender.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("salalalal");
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem("rtrturturtu");
-            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
-            this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("salalalal");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("rtrturturtu");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("");
             this.tabHolder = new MaterialSkin.Controls.MaterialTabControl();
-            this.tabInbox = new System.Windows.Forms.TabPage();
-            this.emailListView = new MaterialSkin.Controls.MaterialListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tabMail = new System.Windows.Forms.TabPage();
-            this.viewEmailSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.emailWebBrowser = new System.Windows.Forms.WebBrowser();
-            this.viewEmailButtonHolder = new System.Windows.Forms.Panel();
-            this.btnReplyMail = new MaterialSkin.Controls.MaterialFlatButton();
-            this.tabWriteEmail = new System.Windows.Forms.TabPage();
-            this.richMailBody = new System.Windows.Forms.RichTextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.richMailSubject = new System.Windows.Forms.RichTextBox();
-            this.writeEmailButtonHolder = new System.Windows.Forms.Panel();
-            this.btnSendMail = new MaterialSkin.Controls.MaterialFlatButton();
-            this.btnSaveDraft = new MaterialSkin.Controls.MaterialFlatButton();
-            this.writeEmailFieldHolder = new System.Windows.Forms.Panel();
-            this.txtMailBcc = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
-            this.txtMailCc = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            this.txtMailFrom = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            this.txtMailTo = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -74,64 +46,17 @@ namespace SaintSender.View
             this.btnStarred = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnDrafts = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnInbox = new MaterialSkin.Controls.MaterialFlatButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
-            this.button2 = new System.Windows.Forms.Button();
+            this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
+            this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnWriteEmail = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tabHolder.SuspendLayout();
-            this.tabInbox.SuspendLayout();
-            this.tabMail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.viewEmailSplitContainer)).BeginInit();
-            this.viewEmailSplitContainer.Panel1.SuspendLayout();
-            this.viewEmailSplitContainer.Panel2.SuspendLayout();
-            this.viewEmailSplitContainer.SuspendLayout();
-            this.viewEmailButtonHolder.SuspendLayout();
-            this.tabWriteEmail.SuspendLayout();
-            this.writeEmailButtonHolder.SuspendLayout();
-            this.writeEmailFieldHolder.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // materialListView1
-            // 
-            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialListView1.Depth = 0;
-            this.materialListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.materialListView1.FullRowSelect = true;
-            this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.materialListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem17,
-            listViewItem18,
-            listViewItem19,
-            listViewItem20});
-            this.materialListView1.Location = new System.Drawing.Point(279, 190);
-            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialListView1.Name = "materialListView1";
-            this.materialListView1.OwnerDraw = true;
-            this.materialListView1.Size = new System.Drawing.Size(311, 225);
-            this.materialListView1.TabIndex = 0;
-            this.materialListView1.UseCompatibleStateImageBehavior = false;
-            this.materialListView1.View = System.Windows.Forms.View.Details;
-            // 
-            // tabSelector
-            // 
-            this.tabSelector.BaseTabControl = this.tabHolder;
-            this.tabSelector.Depth = 0;
-            this.tabSelector.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabSelector.Location = new System.Drawing.Point(0, 63);
-            this.tabSelector.Margin = new System.Windows.Forms.Padding(3, 300, 3, 0);
-            this.tabSelector.MouseState = MaterialSkin.MouseState.HOVER;
-            this.tabSelector.Name = "tabSelector";
-            this.tabSelector.Padding = new System.Windows.Forms.Padding(0, 300, 0, 0);
-            this.tabSelector.Size = new System.Drawing.Size(1280, 23);
-            this.tabSelector.TabIndex = 1;
-            this.tabSelector.Text = "materialTabSelector1";
-            // 
             // tabHolder
             // 
-            this.tabHolder.Controls.Add(this.tabInbox);
-            this.tabHolder.Controls.Add(this.tabMail);
-            this.tabHolder.Controls.Add(this.tabWriteEmail);
+            this.tabHolder.Controls.Add(this.tabPage1);
             this.tabHolder.Depth = 0;
             this.tabHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabHolder.Location = new System.Drawing.Point(199, 86);
@@ -140,353 +65,6 @@ namespace SaintSender.View
             this.tabHolder.SelectedIndex = 0;
             this.tabHolder.Size = new System.Drawing.Size(1081, 634);
             this.tabHolder.TabIndex = 2;
-            // 
-            // tabInbox
-            // 
-            this.tabInbox.Controls.Add(this.emailListView);
-            this.tabInbox.Location = new System.Drawing.Point(4, 22);
-            this.tabInbox.Name = "tabInbox";
-            this.tabInbox.Padding = new System.Windows.Forms.Padding(3, 20, 3, 3);
-            this.tabInbox.Size = new System.Drawing.Size(1073, 608);
-            this.tabInbox.TabIndex = 0;
-            this.tabInbox.Text = "Inbox";
-            this.tabInbox.UseVisualStyleBackColor = true;
-            // 
-            // emailListView
-            // 
-            this.emailListView.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.emailListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.emailListView.CheckBoxes = true;
-            this.emailListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.emailListView.Depth = 0;
-            this.emailListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emailListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.emailListView.FullRowSelect = true;
-            this.emailListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.emailListView.Location = new System.Drawing.Point(3, 20);
-            this.emailListView.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.emailListView.MouseState = MaterialSkin.MouseState.OUT;
-            this.emailListView.Name = "emailListView";
-            this.emailListView.OwnerDraw = true;
-            this.emailListView.Size = new System.Drawing.Size(1067, 585);
-            this.emailListView.TabIndex = 0;
-            this.emailListView.UseCompatibleStateImageBehavior = false;
-            this.emailListView.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Subject";
-            this.columnHeader1.Width = 400;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "From";
-            this.columnHeader2.Width = 200;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Date";
-            this.columnHeader3.Width = 200;
-            // 
-            // tabMail
-            // 
-            this.tabMail.Controls.Add(this.viewEmailSplitContainer);
-            this.tabMail.Location = new System.Drawing.Point(4, 22);
-            this.tabMail.Name = "tabMail";
-            this.tabMail.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMail.Size = new System.Drawing.Size(1073, 608);
-            this.tabMail.TabIndex = 1;
-            this.tabMail.Text = "Rosszlanyok.hu regisztracio";
-            this.tabMail.UseVisualStyleBackColor = true;
-            // 
-            // viewEmailSplitContainer
-            // 
-            this.viewEmailSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.viewEmailSplitContainer.Location = new System.Drawing.Point(3, 3);
-            this.viewEmailSplitContainer.Name = "viewEmailSplitContainer";
-            this.viewEmailSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // viewEmailSplitContainer.Panel1
-            // 
-            this.viewEmailSplitContainer.Panel1.Controls.Add(this.emailWebBrowser);
-            // 
-            // viewEmailSplitContainer.Panel2
-            // 
-            this.viewEmailSplitContainer.Panel2.Controls.Add(this.viewEmailButtonHolder);
-            this.viewEmailSplitContainer.Size = new System.Drawing.Size(1067, 602);
-            this.viewEmailSplitContainer.SplitterDistance = 544;
-            this.viewEmailSplitContainer.SplitterWidth = 10;
-            this.viewEmailSplitContainer.TabIndex = 0;
-            // 
-            // emailWebBrowser
-            // 
-            this.emailWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emailWebBrowser.Location = new System.Drawing.Point(0, 0);
-            this.emailWebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.emailWebBrowser.Name = "emailWebBrowser";
-            this.emailWebBrowser.ScriptErrorsSuppressed = true;
-            this.emailWebBrowser.Size = new System.Drawing.Size(1067, 544);
-            this.emailWebBrowser.TabIndex = 17;
-            // 
-            // viewEmailButtonHolder
-            // 
-            this.viewEmailButtonHolder.Controls.Add(this.btnReplyMail);
-            this.viewEmailButtonHolder.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.viewEmailButtonHolder.Location = new System.Drawing.Point(0, 0);
-            this.viewEmailButtonHolder.Name = "viewEmailButtonHolder";
-            this.viewEmailButtonHolder.Size = new System.Drawing.Size(1067, 48);
-            this.viewEmailButtonHolder.TabIndex = 19;
-            // 
-            // btnReplyMail
-            // 
-            this.btnReplyMail.AutoSize = true;
-            this.btnReplyMail.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnReplyMail.BackColor = System.Drawing.Color.Silver;
-            this.btnReplyMail.Depth = 0;
-            this.btnReplyMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnReplyMail.Icon = null;
-            this.btnReplyMail.Location = new System.Drawing.Point(944, 6);
-            this.btnReplyMail.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnReplyMail.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnReplyMail.Name = "btnReplyMail";
-            this.btnReplyMail.Primary = false;
-            this.btnReplyMail.Size = new System.Drawing.Size(119, 36);
-            this.btnReplyMail.TabIndex = 8;
-            this.btnReplyMail.Text = "REPLY TO MAIL";
-            this.btnReplyMail.UseVisualStyleBackColor = false;
-            // 
-            // tabWriteEmail
-            // 
-            this.tabWriteEmail.BackColor = System.Drawing.SystemColors.Control;
-            this.tabWriteEmail.Controls.Add(this.richMailBody);
-            this.tabWriteEmail.Controls.Add(this.panel2);
-            this.tabWriteEmail.Controls.Add(this.richMailSubject);
-            this.tabWriteEmail.Controls.Add(this.writeEmailButtonHolder);
-            this.tabWriteEmail.Controls.Add(this.writeEmailFieldHolder);
-            this.tabWriteEmail.Location = new System.Drawing.Point(4, 22);
-            this.tabWriteEmail.Name = "tabWriteEmail";
-            this.tabWriteEmail.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.tabWriteEmail.Size = new System.Drawing.Size(1073, 608);
-            this.tabWriteEmail.TabIndex = 2;
-            this.tabWriteEmail.Text = "WRITE EMAIL";
-            // 
-            // richMailBody
-            // 
-            this.richMailBody.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.richMailBody.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richMailBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richMailBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.richMailBody.Location = new System.Drawing.Point(10, 150);
-            this.richMailBody.Margin = new System.Windows.Forms.Padding(10, 3, 10, 10);
-            this.richMailBody.Name = "richMailBody";
-            this.richMailBody.Size = new System.Drawing.Size(1053, 410);
-            this.richMailBody.TabIndex = 15;
-            this.richMailBody.Text = "";
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(10, 145);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1053, 5);
-            this.panel2.TabIndex = 16;
-            // 
-            // richMailSubject
-            // 
-            this.richMailSubject.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.richMailSubject.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richMailSubject.Dock = System.Windows.Forms.DockStyle.Top;
-            this.richMailSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.richMailSubject.Location = new System.Drawing.Point(10, 122);
-            this.richMailSubject.Margin = new System.Windows.Forms.Padding(10, 3, 10, 10);
-            this.richMailSubject.Name = "richMailSubject";
-            this.richMailSubject.Size = new System.Drawing.Size(1053, 23);
-            this.richMailSubject.TabIndex = 14;
-            this.richMailSubject.Text = "";
-            // 
-            // writeEmailButtonHolder
-            // 
-            this.writeEmailButtonHolder.Controls.Add(this.btnSendMail);
-            this.writeEmailButtonHolder.Controls.Add(this.btnSaveDraft);
-            this.writeEmailButtonHolder.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.writeEmailButtonHolder.Location = new System.Drawing.Point(10, 560);
-            this.writeEmailButtonHolder.Name = "writeEmailButtonHolder";
-            this.writeEmailButtonHolder.Size = new System.Drawing.Size(1053, 48);
-            this.writeEmailButtonHolder.TabIndex = 13;
-            // 
-            // btnSendMail
-            // 
-            this.btnSendMail.AutoSize = true;
-            this.btnSendMail.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSendMail.BackColor = System.Drawing.Color.Silver;
-            this.btnSendMail.Depth = 0;
-            this.btnSendMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSendMail.Icon = null;
-            this.btnSendMail.Location = new System.Drawing.Point(957, 6);
-            this.btnSendMail.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnSendMail.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSendMail.Name = "btnSendMail";
-            this.btnSendMail.Primary = false;
-            this.btnSendMail.Size = new System.Drawing.Size(92, 36);
-            this.btnSendMail.TabIndex = 8;
-            this.btnSendMail.Text = "SEND MAIL";
-            this.btnSendMail.UseVisualStyleBackColor = false;
-            // 
-            // btnSaveDraft
-            // 
-            this.btnSaveDraft.AutoSize = true;
-            this.btnSaveDraft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSaveDraft.BackColor = System.Drawing.Color.Silver;
-            this.btnSaveDraft.Depth = 0;
-            this.btnSaveDraft.Icon = null;
-            this.btnSaveDraft.Location = new System.Drawing.Point(827, 6);
-            this.btnSaveDraft.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnSaveDraft.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnSaveDraft.Name = "btnSaveDraft";
-            this.btnSaveDraft.Primary = true;
-            this.btnSaveDraft.Size = new System.Drawing.Size(122, 36);
-            this.btnSaveDraft.TabIndex = 10;
-            this.btnSaveDraft.Text = "SAVE AS DRAFT";
-            this.btnSaveDraft.UseVisualStyleBackColor = false;
-            // 
-            // writeEmailFieldHolder
-            // 
-            this.writeEmailFieldHolder.Controls.Add(this.txtMailBcc);
-            this.writeEmailFieldHolder.Controls.Add(this.materialLabel5);
-            this.writeEmailFieldHolder.Controls.Add(this.txtMailCc);
-            this.writeEmailFieldHolder.Controls.Add(this.materialLabel4);
-            this.writeEmailFieldHolder.Controls.Add(this.txtMailFrom);
-            this.writeEmailFieldHolder.Controls.Add(this.materialLabel1);
-            this.writeEmailFieldHolder.Controls.Add(this.materialLabel2);
-            this.writeEmailFieldHolder.Controls.Add(this.txtMailTo);
-            this.writeEmailFieldHolder.Dock = System.Windows.Forms.DockStyle.Top;
-            this.writeEmailFieldHolder.Location = new System.Drawing.Point(10, 0);
-            this.writeEmailFieldHolder.Name = "writeEmailFieldHolder";
-            this.writeEmailFieldHolder.Size = new System.Drawing.Size(1053, 122);
-            this.writeEmailFieldHolder.TabIndex = 11;
-            // 
-            // txtMailBcc
-            // 
-            this.txtMailBcc.Depth = 0;
-            this.txtMailBcc.Hint = "";
-            this.txtMailBcc.Location = new System.Drawing.Point(582, 80);
-            this.txtMailBcc.MaxLength = 32767;
-            this.txtMailBcc.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtMailBcc.Name = "txtMailBcc";
-            this.txtMailBcc.PasswordChar = '\0';
-            this.txtMailBcc.SelectedText = "";
-            this.txtMailBcc.SelectionLength = 0;
-            this.txtMailBcc.SelectionStart = 0;
-            this.txtMailBcc.Size = new System.Drawing.Size(467, 23);
-            this.txtMailBcc.TabIndex = 7;
-            this.txtMailBcc.TabStop = false;
-            this.txtMailBcc.UseSystemPasswordChar = false;
-            // 
-            // materialLabel5
-            // 
-            this.materialLabel5.AutoSize = true;
-            this.materialLabel5.Depth = 0;
-            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel5.Location = new System.Drawing.Point(542, 80);
-            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel5.Name = "materialLabel5";
-            this.materialLabel5.Size = new System.Drawing.Size(34, 19);
-            this.materialLabel5.TabIndex = 12;
-            this.materialLabel5.Text = "Bcc";
-            // 
-            // txtMailCc
-            // 
-            this.txtMailCc.Depth = 0;
-            this.txtMailCc.Hint = "";
-            this.txtMailCc.Location = new System.Drawing.Point(586, 38);
-            this.txtMailCc.MaxLength = 32767;
-            this.txtMailCc.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtMailCc.Name = "txtMailCc";
-            this.txtMailCc.PasswordChar = '\0';
-            this.txtMailCc.SelectedText = "";
-            this.txtMailCc.SelectionLength = 0;
-            this.txtMailCc.SelectionStart = 0;
-            this.txtMailCc.Size = new System.Drawing.Size(463, 23);
-            this.txtMailCc.TabIndex = 6;
-            this.txtMailCc.TabStop = false;
-            this.txtMailCc.UseSystemPasswordChar = false;
-            // 
-            // materialLabel4
-            // 
-            this.materialLabel4.AutoSize = true;
-            this.materialLabel4.Depth = 0;
-            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(553, 42);
-            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(27, 19);
-            this.materialLabel4.TabIndex = 11;
-            this.materialLabel4.Text = "Cc";
-            // 
-            // txtMailFrom
-            // 
-            this.txtMailFrom.Depth = 0;
-            this.txtMailFrom.Hint = "";
-            this.txtMailFrom.Location = new System.Drawing.Point(53, 38);
-            this.txtMailFrom.MaxLength = 32767;
-            this.txtMailFrom.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtMailFrom.Name = "txtMailFrom";
-            this.txtMailFrom.PasswordChar = '\0';
-            this.txtMailFrom.SelectedText = "";
-            this.txtMailFrom.SelectionLength = 0;
-            this.txtMailFrom.SelectionStart = 0;
-            this.txtMailFrom.Size = new System.Drawing.Size(463, 23);
-            this.txtMailFrom.TabIndex = 4;
-            this.txtMailFrom.TabStop = false;
-            this.txtMailFrom.UseSystemPasswordChar = false;
-            // 
-            // materialLabel1
-            // 
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(3, 42);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(44, 19);
-            this.materialLabel1.TabIndex = 5;
-            this.materialLabel1.Text = "From";
-            // 
-            // materialLabel2
-            // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(20, 80);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(27, 19);
-            this.materialLabel2.TabIndex = 6;
-            this.materialLabel2.Text = "To";
-            // 
-            // txtMailTo
-            // 
-            this.txtMailTo.Depth = 0;
-            this.txtMailTo.Hint = "";
-            this.txtMailTo.Location = new System.Drawing.Point(53, 80);
-            this.txtMailTo.MaxLength = 32767;
-            this.txtMailTo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtMailTo.Name = "txtMailTo";
-            this.txtMailTo.PasswordChar = '\0';
-            this.txtMailTo.SelectedText = "";
-            this.txtMailTo.SelectionLength = 0;
-            this.txtMailTo.SelectionStart = 0;
-            this.txtMailTo.Size = new System.Drawing.Size(463, 23);
-            this.txtMailTo.TabIndex = 5;
-            this.txtMailTo.TabStop = false;
-            this.txtMailTo.UseSystemPasswordChar = false;
             // 
             // imageList1
             // 
@@ -497,8 +75,6 @@ namespace SaintSender.View
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.materialSingleLineTextField1);
             this.panel1.Controls.Add(this.btnSettings);
             this.panel1.Controls.Add(this.btnLogOut);
@@ -506,7 +82,7 @@ namespace SaintSender.View
             this.panel1.Controls.Add(this.btnStarred);
             this.panel1.Controls.Add(this.btnDrafts);
             this.panel1.Controls.Add(this.btnInbox);
-            this.panel1.Controls.Add(this.materialFlatButton1);
+            this.panel1.Controls.Add(this.btnWriteEmail);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 86);
             this.panel1.Name = "panel1";
@@ -641,44 +217,69 @@ namespace SaintSender.View
             this.btnInbox.Text = "Inbox (234)";
             this.btnInbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInbox.UseVisualStyleBackColor = true;
+            this.btnInbox.Click += new System.EventHandler(this.btnInbox_Click);
             // 
-            // button1
+            // materialListView1
             // 
-            this.button1.Location = new System.Drawing.Point(90, 330);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "new inbox";
-            this.button1.UseVisualStyleBackColor = true;
+            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.materialListView1.Depth = 0;
+            this.materialListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.materialListView1.FullRowSelect = true;
+            this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.materialListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12});
+            this.materialListView1.Location = new System.Drawing.Point(279, 190);
+            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialListView1.Name = "materialListView1";
+            this.materialListView1.OwnerDraw = true;
+            this.materialListView1.Size = new System.Drawing.Size(311, 225);
+            this.materialListView1.TabIndex = 0;
+            this.materialListView1.UseCompatibleStateImageBehavior = false;
+            this.materialListView1.View = System.Windows.Forms.View.Details;
             // 
-            // materialFlatButton1
+            // tabSelector
             // 
-            this.materialFlatButton1.AutoSize = true;
-            this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.materialFlatButton1.Icon = null;
-            this.materialFlatButton1.Location = new System.Drawing.Point(0, 0);
-            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButton1.Name = "materialFlatButton1";
-            this.materialFlatButton1.Primary = false;
-            this.materialFlatButton1.Size = new System.Drawing.Size(199, 36);
-            this.materialFlatButton1.TabIndex = 8;
-            this.materialFlatButton1.Text = "WRITE MAIL";
-            this.materialFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialFlatButton1.UseVisualStyleBackColor = true;
+            this.tabSelector.BaseTabControl = this.tabHolder;
+            this.tabSelector.Depth = 0;
+            this.tabSelector.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabSelector.Location = new System.Drawing.Point(0, 63);
+            this.tabSelector.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tabSelector.Name = "tabSelector";
+            this.tabSelector.Size = new System.Drawing.Size(1280, 23);
+            this.tabSelector.TabIndex = 4;
+            this.tabSelector.Text = "tabSelector";
             // 
-            // button2
+            // tabPage1
             // 
-            this.button2.Location = new System.Drawing.Point(90, 359);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "new mail";
-            this.button2.UseVisualStyleBackColor = true;
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1073, 608);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // Form2
+            // btnWriteEmail
+            // 
+            this.btnWriteEmail.AutoSize = true;
+            this.btnWriteEmail.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnWriteEmail.Depth = 0;
+            this.btnWriteEmail.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnWriteEmail.Icon = null;
+            this.btnWriteEmail.Location = new System.Drawing.Point(0, 0);
+            this.btnWriteEmail.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnWriteEmail.Name = "btnWriteEmail";
+            this.btnWriteEmail.Primary = true;
+            this.btnWriteEmail.Size = new System.Drawing.Size(199, 36);
+            this.btnWriteEmail.TabIndex = 7;
+            this.btnWriteEmail.Text = "WRITE EMAIL";
+            this.btnWriteEmail.UseVisualStyleBackColor = true;
+            this.btnWriteEmail.Click += new System.EventHandler(this.materialRaisedButton1_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -687,25 +288,12 @@ namespace SaintSender.View
             this.Controls.Add(this.materialListView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabSelector);
-            this.Name = "Form2";
+            this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(0, 63, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lakatos Krisztián (lakatos.krisz.23@citromail.hu)";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.tabHolder.ResumeLayout(false);
-            this.tabInbox.ResumeLayout(false);
-            this.tabMail.ResumeLayout(false);
-            this.viewEmailSplitContainer.Panel1.ResumeLayout(false);
-            this.viewEmailSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.viewEmailSplitContainer)).EndInit();
-            this.viewEmailSplitContainer.ResumeLayout(false);
-            this.viewEmailButtonHolder.ResumeLayout(false);
-            this.viewEmailButtonHolder.PerformLayout();
-            this.tabWriteEmail.ResumeLayout(false);
-            this.writeEmailButtonHolder.ResumeLayout(false);
-            this.writeEmailButtonHolder.PerformLayout();
-            this.writeEmailFieldHolder.ResumeLayout(false);
-            this.writeEmailFieldHolder.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -713,16 +301,6 @@ namespace SaintSender.View
         }
 
         #endregion
-
-        private MaterialSkin.Controls.MaterialListView materialListView1;
-        private MaterialSkin.Controls.MaterialTabSelector tabSelector;
-        private MaterialSkin.Controls.MaterialTabControl tabHolder;
-        private System.Windows.Forms.TabPage tabInbox;
-        private System.Windows.Forms.TabPage tabMail;
-        private MaterialSkin.Controls.MaterialListView emailListView;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel panel1;
         private MaterialSkin.Controls.MaterialFlatButton btnInbox;
@@ -731,29 +309,11 @@ namespace SaintSender.View
         private MaterialSkin.Controls.MaterialFlatButton btnDrafts;
         private MaterialSkin.Controls.MaterialFlatButton btnLogOut;
         private MaterialSkin.Controls.MaterialFlatButton btnSettings;
-        private System.Windows.Forms.TabPage tabWriteEmail;
-        private System.Windows.Forms.RichTextBox richMailBody;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.RichTextBox richMailSubject;
-        private System.Windows.Forms.Panel writeEmailButtonHolder;
-        private MaterialSkin.Controls.MaterialFlatButton btnSendMail;
-        private MaterialSkin.Controls.MaterialFlatButton btnSaveDraft;
-        private System.Windows.Forms.Panel writeEmailFieldHolder;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtMailBcc;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtMailCc;
-        private MaterialSkin.Controls.MaterialLabel materialLabel4;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtMailFrom;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtMailTo;
-        private System.Windows.Forms.SplitContainer viewEmailSplitContainer;
-        private System.Windows.Forms.WebBrowser emailWebBrowser;
-        private System.Windows.Forms.Panel viewEmailButtonHolder;
-        private MaterialSkin.Controls.MaterialFlatButton btnReplyMail;
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
-        private System.Windows.Forms.Button button1;
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
-        private System.Windows.Forms.Button button2;
+        private MaterialSkin.Controls.MaterialTabControl tabHolder;
+        private MaterialSkin.Controls.MaterialListView materialListView1;
+        private MaterialSkin.Controls.MaterialTabSelector tabSelector;
+        private System.Windows.Forms.TabPage tabPage1;
+        private MaterialSkin.Controls.MaterialRaisedButton btnWriteEmail;
     }
 }

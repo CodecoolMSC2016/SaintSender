@@ -27,5 +27,22 @@ namespace SaintSender.View
         {
             cm = new ControlManager(tabHolder);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoginWindow lw = new LoginWindow();
+            lw.Show();
+        }
+
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+           
+            TabPage writeEMail = cm.AddNewTab("WRITE EMAIL", ControlManager.TabTypes.SendMail);
+        }
+        
+        private void btnInbox_Click(object sender, EventArgs e)
+        {
+            TabPage inbox = cm.AddNewTab("INBOX", ControlManager.TabTypes.MailList);
+        }
     }
 }
