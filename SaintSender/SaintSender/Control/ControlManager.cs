@@ -1,6 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using SaintSender.Control;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SaintSender.View
 {
@@ -17,20 +18,21 @@ namespace SaintSender.View
             this.tabControl = tabControl;
         }
 
-        public void AddNewTab(string title, TabTypes type)
+        public TabPage AddNewTab(string title, TabTypes type)
         {
+            TabPage tabPage = null;
             switch (type)
             {
                 case TabTypes.MailList:
-                    AddNewMailListTab(title);
+                    tabPage = AddNewMailListTab(title);
                     break;
 
                 case TabTypes.SendMail:
-                    AddNewSendMailTab(title);
+                    tabPage = AddNewSendMailTab(title);
                     break;
 
                 case TabTypes.MailView:
-                    AddNewMailViewTab(title);
+                    tabPage = AddNewMailViewTab(title);
                     break;
 
                 case TabTypes.Settings:
@@ -39,21 +41,43 @@ namespace SaintSender.View
                 default:
                     break;
             }
+            return tabPage;
         }
 
-        private void AddNewMailViewTab(string title)
+        private TabPage AddNewMailViewTab(string title)
         {
-            tabControl.TabPages.Add(cc.GetTabMail(title));
+            TabPage tabViewMail = cc.GetTabMail(title);
+            tabControl.TabPages.Add(tabViewMail);
+
+            return tabViewMail;
         }
 
-        private void AddNewMailListTab(string title)
+        private TabPage AddNewMailListTab(string title)
         {
-            tabControl.TabPages.Add(cc.getTabInbox(title));
+            TabPage tabMailList = cc.getTabInbox(title);
+            tabControl.TabPages.Add(tabMailList);
+
+            return tabMailList;
         }
 
-        private void AddNewSendMailTab(string title)
+        private TabPage AddNewSendMailTab(string title)
         {
-            tabControl.TabPages.Add(cc.GetTabWriteEmail(title));
+            TabPage tabWriteEmail = cc.GetTabWriteEmail(title);
+            tabControl.TabPages.Add(tabWriteEmail);
+
+            return tabWriteEmail;
+        }
+
+        public MaterialListView GetMailListView(TabPage tabPage)
+        {
+            System.Windows.Forms.Control[] matches = tabPage.Controls.Find("emailListView", true);
+            return (MaterialListView)matches[0];
+        }
+
+        public WebBrowser GetMailWebBrowser(TabPage tabPage)
+        {
+            System.Windows.Forms.Control[] matches = tabPage.Controls.Find("emailWebBrowser", true);
+            return (WebBrowser)matches[0];
         }
     }
 }
