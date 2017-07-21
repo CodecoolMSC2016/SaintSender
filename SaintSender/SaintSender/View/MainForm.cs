@@ -40,6 +40,7 @@ namespace SaintSender.View
             loginWindow.Show();
             EnabledChanged += (s, eArg) =>
             {
+                UseWaitCursor = true;
                 ResetForm();
                 cm.FormWidth = Width;
                 cm.TabControl = tabHolder;
@@ -47,7 +48,10 @@ namespace SaintSender.View
                 Task loadMails = new Task(() => cm.ShowEmails(inbox));
                 loadMails.Start();
                 tabHolder.TabPages.Remove(tabHolder.TabPages[0]);
-                loadMails.ContinueWith((task) => AutoRefresh(), TaskContinuationOptions.OnlyOnRanToCompletion);
+                loadMails.ContinueWith((task) => {
+                    AutoRefresh();
+                    UseWaitCursor = false;
+                    }, TaskContinuationOptions.OnlyOnRanToCompletion);
             };
         }
 
@@ -84,7 +88,6 @@ namespace SaintSender.View
         {
             Task.Run(() =>
             {
-                MimeMessage[] mails;
                 int newMailCount = 0;
                 TabPage inboxPage;
                 while (Enabled)
@@ -92,17 +95,12 @@ namespace SaintSender.View
 
                     newMailCount = client.QueryMailCount();
                     inboxPage = tabHolder.TabPages[0];
-                    int currentMailCount = cm.GetMailListView(inboxPage).Items.Count;
+                    int currentMailCount = client.Mails.Length;
 
                     if (newMailCount > currentMailCount)
                     {
-                        //TabPage inbox = cm.AddNewTab(" INBOX ", TabTypes.MailList);
-                        
                         cm.ShowEmails(tabHolder.TabPages[0], client.DownloadMails());
                         ShowNotification(newMailCount - currentMailCount);
-                        //tabHolder.TabPages.Remove(tabHolder.TabPages[0]);
-                        //loadMails.ContinueWith((task) => AutoRefresh(), TaskContinuationOptions.OnlyOnRanToCompletion);
-                        //OnEnabledChanged(new EventArgs());
                     }
                     Thread.Sleep(1000);
                 }
@@ -118,7 +116,7 @@ namespace SaintSender.View
                 BalloonTipTitle = "New message!",
                 BalloonTipText = "You have " + newMessageCount + " new message(s)."
             };
-            icon.ShowBalloonTip(50000);
+            icon.ShowBalloonTip(30000);
 
         }
 

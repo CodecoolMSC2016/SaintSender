@@ -42,8 +42,10 @@ namespace SaintSender.View
 
             Task.Run(() =>
             {
+                UseWaitCursor = true;
                 if (client.Login())
                 {
+                    UseWaitCursor = false;
                     Invoke(new Close((login, main) => {
                         string name = userName.Split('@')[0].ToUpper();
                         main.Text = name + "(" + userName + ")";
