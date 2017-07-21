@@ -57,7 +57,7 @@ namespace SaintSender.Control
                 if (subject == String.Empty)
                     subject = selectedItem.SubItems[1].Text;
                 int mailIndex = emailListView.Items.IndexOf(selectedItem);
-                string body = client.Receiver.Mails[mailIndex].HtmlBody;
+                string body = client.Mails[mailIndex].HtmlBody;
                 subject = (subject.Length > 5) ? subject.Substring(0, 5) + ".." : subject;
                 TabPage tab = cm.AddNewTab(subject, TabTypes.MailView);
                 cm.GetMailWebBrowser(tab).DocumentText = body;
