@@ -1,4 +1,6 @@
-﻿using MimeKit;
+﻿using MailKit.Net.Imap;
+using MimeKit;
+using SaintSender.Model;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -6,46 +8,44 @@ namespace SaintSender.Control
 {
     internal class Searcher
     {
-        //private string emailPattern = @"^(?("")("".+?(?<!\\)""@) |
-        //(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-        //                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\]) |
-        //(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
-        // validate the Email
-        //if (Regex.IsMatch(txtEmail.Text, emailPattern, RegexOptions.IgnoreCase))
+        
+        private MessageReceiver receiver;
+        private SaintClient client;
+        //private SaintClient client = SaintClient.INSTANCE;
 
-        public void SearchByMailboxAddress(string pattern)
+        public MimeMessage[] SearchMessage(string pattern)
         {
-            List<InternetAddress> result = new List<InternetAddress>();
+            HashSet<MimeMessage> searchResultSet = new HashSet<MimeMessage>();
 
-            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
-            MatchCollection matches = regex.Matches("....");
+            // MimeMessage[] messages = receiver.Mails;
 
-            // needed the Form property of MimeMessage
-            //foreach (MailboxAddress mailbox in message.From.Mailboxes)
-            //{
-            //    if (Regex.IsMatch(mailbox.Address, pattern))
-            //    {
-            //        result.Add(mailbox);
-            //    }
-            //}
-        }
 
-        public List<InternetAddress> SearchByName(string pattern)
-        {
-            List<InternetAddress> result = new List<InternetAddress>();
+            ConnectionInfo imapInfo = new ConnectionInfo("imap.gmail.com", 993);
+            ConnectionInfo smtpInfo = new ConnectionInfo("smtp.gmail.com", 465);
+            client = new SaintClient(imapInfo, smtpInfo, "imaptest420@gmail.com", "024tsetpami");
 
-            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
-            MatchCollection matches = regex.Matches("....");
+            MimeMessage[] messages = client.DownloadMails();
+            for (int i = 0; i < messages.Length; i++)
+            {
+                if (Regex.IsMatch(messages[i].Subject, pattern, RegexOptions.IgnoreCase))
+                {
+                    searchResultSet.Add(messages[i]);
+                }
 
-            // needed the Form property of MimeMessage
-            //foreach (MailboxAddress mailbox in message.From.Mailboxes)
-            //{
-            //    if (Regex.IsMatch(mailbox.Name, pattern))
-            //    {
-            //        result.Add(mailbox);
-            //    }
-            //}
-            return result;
+                foreach (InternetAddress email in messages[i].From)
+                {
+                    if (Regex.IsMatch(email.ToString(), pattern, RegexOptions.IgnoreCase))
+                    {
+                        searchResultSet.Add(messages[i]);
+                    }
+                }
+            }
+            MimeMessage[] searchResultArray = new MimeMessage[searchResultSet.Count];
+            searchResultSet.CopyTo(searchResultArray);
+
+            return searchResultArray;
+
+          
         }
     }
 }
