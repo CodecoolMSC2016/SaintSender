@@ -19,6 +19,7 @@ namespace SaintSender.Control
 
             // MimeMessage[] messages = receiver.Mails;
 
+
             ConnectionInfo imapInfo = new ConnectionInfo("imap.gmail.com", 993);
             ConnectionInfo smtpInfo = new ConnectionInfo("smtp.gmail.com", 465);
             client = new SaintClient(imapInfo, smtpInfo, "imaptest420@gmail.com", "024tsetpami");
@@ -43,6 +44,8 @@ namespace SaintSender.Control
             searchResultSet.CopyTo(searchResultArray);
 
             return searchResultArray;
+
+          
         }
     }
 }

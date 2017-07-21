@@ -1,48 +1,65 @@
-﻿using MimeKit;
+﻿using MailKit;
+using MimeKit;
 using SaintSender.Model;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SaintSender.Control
 {
     internal class SaintClient : IClient
     {
-        private IReceiver reciever;
+        public IReceiver Receiver { get; private set; }
         private ISender sender;
         private ISerializer serializer;
-        private ConnectionInfo imapInfo;
-        private ConnectionInfo smtpInfo;
-        private string userName;
-        private string password;
+        public ConnectionInfo ImapInfo { get; set; }
+        public ConnectionInfo SmtpInfo { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public int MailCount { get; private set; }
+        public MimeMessage[] Mails { get; private set; }
+       
+        public static IClient INSTANCE { get; } = new SaintClient();
 
-        public SaintClient(
-            ConnectionInfo imapInfo,
-            ConnectionInfo smtpInfo,
-            string userName,
-            string password)
+        private SaintClient()
         {
-            this.userName = userName;
-            this.password = password;
-            this.imapInfo = imapInfo;
-            this.smtpInfo = smtpInfo;
             serializer = new Serializer();
+        }
+
+        public bool Login()
+        {
+            using (var connection = new MessageConnection(ImapInfo, SmtpInfo))
+            {
+                try
+                {
+                    connection.Login(UserName, Password);
+                }catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Failed Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                return true;
+            }
         }
 
         public MimeMessage[] DownloadMails()
         {
-            using (var connection = new MessageConnection(imapInfo, smtpInfo))
+            using (var connection = new MessageConnection(ImapInfo, SmtpInfo))
             {
-                connection.Login(userName,password);
-                reciever = new MessageReceiver(connection.ReceiverClient);
-                return reciever.DownloadMails();
+                connection.Login(UserName,Password);
+                Receiver = new MessageReceiver(connection.ReceiverClient);
+
+                Mails = Receiver.DownloadMails();
+                MailCount = Mails.Length;
+                return Mails;
             }
         }
 
         public void SendMail(MimeMessage message)
         {
-            using (var connection = new MessageConnection(imapInfo, smtpInfo))
+            using (var connection = new MessageConnection(ImapInfo, SmtpInfo))
             {
-                connection.Login(userName, password);
+                connection.Login(UserName, Password);
                 sender = new MessageSender(connection.SenderClient);
                 sender.SendMail(message);
             }
@@ -50,12 +67,23 @@ namespace SaintSender.Control
 
         public void BackupMails()
         {
-            serializer.Save(reciever.Mails, Properties.Settings.Default.BackupFolder);
+            serializer.Save(Receiver.Mails, Properties.Settings.Default.BackupFolder);
         }
 
         public void RestoreMails()
         {
             serializer.Restore(Properties.Settings.Default.BackupFolder);
         }
+
+        public int QueryMailCount()
+        {
+            using (var connection = new MessageConnection(ImapInfo, SmtpInfo))
+            {
+                connection.Login(UserName, Password);
+                Receiver = new MessageReceiver(connection.ReceiverClient);
+                return Receiver.QueryMailCount();
+            }
+        }
+       
     }
 }
