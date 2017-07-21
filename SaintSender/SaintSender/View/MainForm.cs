@@ -47,7 +47,7 @@ namespace SaintSender.View
                 Task loadMails = new Task(() => cm.ShowEmails(inbox));
                 loadMails.Start();
                 tabHolder.TabPages.Remove(tabHolder.TabPages[0]);
-                //loadMails.ContinueWith((task) => AutoRefresh(), TaskContinuationOptions.OnlyOnRanToCompletion);
+                loadMails.ContinueWith((task) => AutoRefresh(), TaskContinuationOptions.OnlyOnRanToCompletion);
             };
         }
 
@@ -85,17 +85,24 @@ namespace SaintSender.View
             Task.Run(() =>
             {
                 MimeMessage[] mails;
+                int newMailCount = 0;
                 TabPage inboxPage;
                 while (Enabled)
                 {
-                    mails = client.DownloadMails();
+
+                    newMailCount = client.QueryMailCount();
                     inboxPage = tabHolder.TabPages[0];
                     int currentMailCount = cm.GetMailListView(inboxPage).Items.Count;
 
-                    if (mails.Length > currentMailCount)
+                    if (newMailCount > currentMailCount)
                     {
-                        inboxPage.Invoke(new Action( () => cm.ShowEmails(inboxPage)));
-                        ShowNotification(mails.Length - currentMailCount);
+                        //TabPage inbox = cm.AddNewTab(" INBOX ", TabTypes.MailList);
+                        
+                        cm.ShowEmails(tabHolder.TabPages[0], client.DownloadMails());
+                        ShowNotification(newMailCount - currentMailCount);
+                        //tabHolder.TabPages.Remove(tabHolder.TabPages[0]);
+                        //loadMails.ContinueWith((task) => AutoRefresh(), TaskContinuationOptions.OnlyOnRanToCompletion);
+                        //OnEnabledChanged(new EventArgs());
                     }
                     Thread.Sleep(1000);
                 }

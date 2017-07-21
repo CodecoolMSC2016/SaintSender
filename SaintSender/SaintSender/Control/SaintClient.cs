@@ -17,6 +17,7 @@ namespace SaintSender.Control
         public string UserName { get; set; }
         public string Password { get; set; }
         public int MailCount { get; private set; }
+        public MimeMessage[] Mails { get; private set; }
        
         public static IClient INSTANCE { get; } = new SaintClient();
 
@@ -48,9 +49,9 @@ namespace SaintSender.Control
                 connection.Login(UserName,Password);
                 Receiver = new MessageReceiver(connection.ReceiverClient);
 
-                MimeMessage[] mails = Receiver.DownloadMails();
-                MailCount = mails.Length;
-                return mails;
+                Mails = Receiver.DownloadMails();
+                MailCount = Mails.Length;
+                return Mails;
             }
         }
 
@@ -74,6 +75,15 @@ namespace SaintSender.Control
             serializer.Restore(Properties.Settings.Default.BackupFolder);
         }
 
+        public int QueryMailCount()
+        {
+            using (var connection = new MessageConnection(ImapInfo, SmtpInfo))
+            {
+                connection.Login(UserName, Password);
+                Receiver = new MessageReceiver(connection.ReceiverClient);
+                return Receiver.QueryMailCount();
+            }
+        }
        
     }
 }

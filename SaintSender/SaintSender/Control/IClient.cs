@@ -7,6 +7,8 @@ namespace SaintSender.Control
 {
     internal interface IClient
     {
+        MimeMessage[] Mails { get; }
+        int QueryMailCount();
         IReceiver Receiver { get; }
         int MailCount { get; }
         ConnectionInfo ImapInfo { get; set; }
