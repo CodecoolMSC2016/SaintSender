@@ -1,4 +1,5 @@
-﻿using MimeKit;
+﻿using MailKit;
+using MimeKit;
 using SaintSender.Model;
 using System.Collections.Generic;
 
@@ -6,7 +7,8 @@ namespace SaintSender.Control
 {
     internal interface IClient
     {
-
+        IReceiver Receiver { get; }
+        int MailCount { get; }
         ConnectionInfo ImapInfo { get; set; }
         ConnectionInfo SmtpInfo { get; set; }
         string UserName { get; set; }
@@ -15,5 +17,6 @@ namespace SaintSender.Control
         void SendMail(MimeMessage message);
         void BackupMails();
         void RestoreMails();
+        bool Login();
     }
 }

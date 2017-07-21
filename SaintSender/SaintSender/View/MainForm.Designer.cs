@@ -31,12 +31,12 @@ namespace SaintSender.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("salalalal");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("rtrturturtu");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("salalalal");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("rtrturturtu");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
             this.tabHolder = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -46,10 +46,10 @@ namespace SaintSender.View
             this.btnStarred = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnDrafts = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnInbox = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnWriteEmail = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
             this.tabSelector = new MaterialSkin.Controls.MaterialTabSelector();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnWriteEmail = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnCloseTab = new MaterialSkin.Controls.MaterialRaisedButton();
             this.tabHolder.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +65,21 @@ namespace SaintSender.View
             this.tabHolder.SelectedIndex = 0;
             this.tabHolder.Size = new System.Drawing.Size(1081, 634);
             this.tabHolder.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1073, 608);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // panel1
             // 
@@ -139,6 +154,7 @@ namespace SaintSender.View
             this.btnLogOut.Text = "LOG OUT";
             this.btnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnSpam
             // 
@@ -213,49 +229,6 @@ namespace SaintSender.View
             this.btnInbox.UseVisualStyleBackColor = true;
             this.btnInbox.Click += new System.EventHandler(this.btnInbox_Click);
             // 
-            // materialListView1
-            // 
-            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialListView1.Depth = 0;
-            this.materialListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.materialListView1.FullRowSelect = true;
-            this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.materialListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12});
-            this.materialListView1.Location = new System.Drawing.Point(279, 190);
-            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialListView1.Name = "materialListView1";
-            this.materialListView1.OwnerDraw = true;
-            this.materialListView1.Size = new System.Drawing.Size(311, 225);
-            this.materialListView1.TabIndex = 0;
-            this.materialListView1.UseCompatibleStateImageBehavior = false;
-            this.materialListView1.View = System.Windows.Forms.View.Details;
-            // 
-            // tabSelector
-            // 
-            this.tabSelector.BaseTabControl = this.tabHolder;
-            this.tabSelector.Depth = 0;
-            this.tabSelector.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabSelector.Location = new System.Drawing.Point(0, 63);
-            this.tabSelector.MouseState = MaterialSkin.MouseState.HOVER;
-            this.tabSelector.Name = "tabSelector";
-            this.tabSelector.Size = new System.Drawing.Size(1280, 23);
-            this.tabSelector.TabIndex = 4;
-            this.tabSelector.Text = "tabSelector";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1073, 608);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // btnWriteEmail
             // 
             this.btnWriteEmail.AutoSize = true;
@@ -273,11 +246,64 @@ namespace SaintSender.View
             this.btnWriteEmail.UseVisualStyleBackColor = true;
             this.btnWriteEmail.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
+            // materialListView1
+            // 
+            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.materialListView1.Depth = 0;
+            this.materialListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.materialListView1.FullRowSelect = true;
+            this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.materialListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4});
+            this.materialListView1.Location = new System.Drawing.Point(279, 190);
+            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialListView1.Name = "materialListView1";
+            this.materialListView1.OwnerDraw = true;
+            this.materialListView1.Size = new System.Drawing.Size(311, 225);
+            this.materialListView1.TabIndex = 0;
+            this.materialListView1.UseCompatibleStateImageBehavior = false;
+            this.materialListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // tabSelector
+            // 
+            this.tabSelector.BaseTabControl = this.tabHolder;
+            this.tabSelector.Depth = 0;
+            this.tabSelector.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabSelector.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.tabSelector.Location = new System.Drawing.Point(0, 63);
+            this.tabSelector.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tabSelector.Name = "tabSelector";
+            this.tabSelector.Size = new System.Drawing.Size(1280, 23);
+            this.tabSelector.TabIndex = 4;
+            this.tabSelector.Text = "tabSelector";
+            // 
+            // btnCloseTab
+            // 
+            this.btnCloseTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCloseTab.AutoSize = true;
+            this.btnCloseTab.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCloseTab.Depth = 0;
+            this.btnCloseTab.Icon = null;
+            this.btnCloseTab.Location = new System.Drawing.Point(1184, 44);
+            this.btnCloseTab.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCloseTab.Name = "btnCloseTab";
+            this.btnCloseTab.Primary = true;
+            this.btnCloseTab.Size = new System.Drawing.Size(92, 36);
+            this.btnCloseTab.TabIndex = 8;
+            this.btnCloseTab.Text = "CLOSE TAB";
+            this.btnCloseTab.UseVisualStyleBackColor = true;
+            this.btnCloseTab.Click += new System.EventHandler(this.btnCloseTab_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.btnCloseTab);
             this.Controls.Add(this.tabHolder);
             this.Controls.Add(this.materialListView1);
             this.Controls.Add(this.panel1);
@@ -286,11 +312,13 @@ namespace SaintSender.View
             this.Padding = new System.Windows.Forms.Padding(0, 63, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lakatos Krisztián (lakatos.krisz.23@citromail.hu)";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.tabHolder.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -309,5 +337,6 @@ namespace SaintSender.View
         private MaterialSkin.Controls.MaterialTabSelector tabSelector;
         private System.Windows.Forms.TabPage tabPage1;
         private MaterialSkin.Controls.MaterialRaisedButton btnWriteEmail;
+        private MaterialSkin.Controls.MaterialRaisedButton btnCloseTab;
     }
 }

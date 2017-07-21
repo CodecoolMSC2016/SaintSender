@@ -2,6 +2,7 @@
 using MailKit.Net.Imap;
 using MimeKit;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,10 +24,9 @@ namespace SaintSender.Control
             var inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadOnly);
             Mails = new MimeMessage[inbox.Count];
-            Parallel.For(0, inbox.Count, 
-                (i) => Mails[i] = inbox.GetMessageAsync(i).Result);
+            Parallel.For(0, inbox.Count,
+                (i) => Mails[inbox.Count - i - 1] = inbox.GetMessageAsync(i).Result);
             return Mails;
         }
-
     }
 }

@@ -1,6 +1,9 @@
 ﻿using MaterialSkin.Controls;
+using MimeKit;
 using SaintSender.Control;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SaintSender.View
@@ -11,35 +14,40 @@ namespace SaintSender.View
 
         private ControlCollection cc = new ControlCollection();
         private List<MaterialTabControl> tabs = new List<MaterialTabControl>();
-        private MaterialTabControl tabControl;
+        public MaterialTabControl TabControl { get; set; }
+        public int FormWidth { get; set; }
+        private IClient client = SaintClient.INSTANCE;
 
-        public ControlManager(MaterialTabControl tabControl)
-        {
-            this.tabControl = tabControl;
+        public static ControlManager INSTANCE { get; } = new ControlManager();
+
+        private ControlManager(){
         }
 
         public TabPage AddNewTab(string title, TabTypes type)
         {
             TabPage tabPage = null;
-            switch (type)
+            if (TabControl.TabCount < (FormWidth / 100)) 
             {
-                case TabTypes.MailList:
-                    tabPage = AddNewMailListTab(title);
-                    break;
+                switch (type)
+                {
+                    case TabTypes.MailList:
+                        tabPage = AddNewMailListTab(title);
+                        break;
 
-                case TabTypes.SendMail:
-                    tabPage = AddNewSendMailTab(title);
-                    break;
+                    case TabTypes.SendMail:
+                        tabPage = AddNewSendMailTab(title);
+                        break;
 
-                case TabTypes.MailView:
-                    tabPage = AddNewMailViewTab(title);
-                    break;
+                    case TabTypes.MailView:
+                        tabPage = AddNewMailViewTab(title);
+                        break;
 
-                case TabTypes.Settings:
-                    break;
+                    case TabTypes.Settings:
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
             return tabPage;
         }
@@ -47,7 +55,7 @@ namespace SaintSender.View
         private TabPage AddNewMailViewTab(string title)
         {
             TabPage tabViewMail = cc.GetTabMail(title);
-            tabControl.TabPages.Add(tabViewMail);
+            TabControl.TabPages.Add(tabViewMail);
 
             return tabViewMail;
         }
@@ -55,7 +63,12 @@ namespace SaintSender.View
         private TabPage AddNewMailListTab(string title)
         {
             TabPage tabMailList = cc.getTabInbox(title);
-            tabControl.TabPages.Add(tabMailList);
+            TabControl.TabPages.Add(tabMailList);
+            //TabControl.Invoke(new Action(() => TabControl.TabPages.Add(tabMailList)));
+            //new Task(() =>
+            //{
+            //    tabMailList.Invoke(new Action(() => ShowEmails(tabMailList)));
+            //}).Start();
 
             return tabMailList;
         }
@@ -63,7 +76,7 @@ namespace SaintSender.View
         private TabPage AddNewSendMailTab(string title)
         {
             TabPage tabWriteEmail = cc.GetTabWriteEmail(title);
-            tabControl.TabPages.Add(tabWriteEmail);
+            TabControl.TabPages.Add(tabWriteEmail);
 
             return tabWriteEmail;
         }
@@ -78,6 +91,33 @@ namespace SaintSender.View
         {
             System.Windows.Forms.Control[] matches = tabPage.Controls.Find("emailWebBrowser", true);
             return (WebBrowser)matches[0];
+        }
+
+        private delegate void AddToView(ListViewItem item, MaterialListView emailListView);
+
+        private void Add(ListViewItem item, MaterialListView emailListView)
+        {
+            emailListView.Items.Add(item);
+        }
+
+        public void ShowEmails(TabPage page, MimeMessage[] mails = null)
+        {
+            var emailListView = GetMailListView(page);
+            mails = (mails == null) ? client.DownloadMails() : mails;
+            emailListView.Invoke(new Action(() => emailListView.Items.Clear()));
+
+            foreach (MimeMessage mail in mails)
+            {
+                var item = new ListViewItem(new string[] { mail.Subject, mail.From.ToString(), mail.Date.ToString() });
+                if (emailListView.InvokeRequired)
+                {
+                    emailListView.Invoke(new AddToView(Add), new object[] { item, emailListView });
+                }
+                else
+                {
+                    emailListView.Items.Add(item);
+                }
+            }
         }
     }
 }
