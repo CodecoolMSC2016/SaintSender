@@ -106,7 +106,6 @@ namespace SaintSender.View
             mails = (mails == null) ? client.DownloadMails() : mails;
             emailListView.Invoke(new Action(() => emailListView.Items.Clear()));
 
-            Array.Reverse(mails);
             foreach (MimeMessage mail in mails)
             {
                 var item = new ListViewItem(new string[] { mail.Subject, mail.From.ToString(), mail.Date.ToString() });

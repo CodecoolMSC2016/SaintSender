@@ -45,10 +45,9 @@ namespace SaintSender.View
                 cm.TabControl = tabHolder;
                 TabPage inbox = cm.AddNewTab(" INBOX ", TabTypes.MailList);
                 Task loadMails = new Task(() => cm.ShowEmails(inbox));
-                Cursor.Current = Cursors.WaitCursor;
                 loadMails.Start();
                 tabHolder.TabPages.Remove(tabHolder.TabPages[0]);
-                loadMails.ContinueWith((task) => AutoRefresh(), TaskContinuationOptions.OnlyOnRanToCompletion);
+                //loadMails.ContinueWith((task) => AutoRefresh(), TaskContinuationOptions.OnlyOnRanToCompletion);
             };
         }
 
@@ -95,9 +94,10 @@ namespace SaintSender.View
 
                     if (mails.Length > currentMailCount)
                     {
-                        cm.ShowEmails(inboxPage);
+                        inboxPage.Invoke(new Action( () => cm.ShowEmails(inboxPage)));
                         ShowNotification(mails.Length - currentMailCount);
                     }
+                    Thread.Sleep(1000);
                 }
             });
         }
