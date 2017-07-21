@@ -154,5 +154,19 @@ namespace SaintSender.View
             login.Owner = this;
             login.Show();
         }
+
+        private void materialSingleLineTextField1_TextChanged(object sender, EventArgs e)
+        {
+            Searcher search = new Searcher();
+            if (materialSingleLineTextField1.Text == null)
+            {
+                cm.ShowEmails(tabHolder.TabPages[0], client.Mails);
+            }
+            else
+            {
+                cm.ShowEmails(tabHolder.TabPages[0], search.SearchMessage(materialSingleLineTextField1.Text));
+            }
+
+        }
     }
 }

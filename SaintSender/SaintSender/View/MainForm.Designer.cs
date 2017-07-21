@@ -116,6 +116,7 @@ namespace SaintSender.View
             this.materialSingleLineTextField1.TabIndex = 6;
             this.materialSingleLineTextField1.TabStop = false;
             this.materialSingleLineTextField1.UseSystemPasswordChar = false;
+            this.materialSingleLineTextField1.TextChanged += new System.EventHandler(this.materialSingleLineTextField1_TextChanged);
             // 
             // btnSettings
             // 
